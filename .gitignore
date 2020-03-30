@@ -1,0 +1,13 @@
+/vendor
+artisan
+composer.json
+composer.lock
+package.json
+phpunit.xml
+server.php
+webpack.mix.js
+.editorconfig
+.env
+.env.example
+.gitattributes
+.styleci.yml
