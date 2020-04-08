@@ -33,11 +33,4 @@ class AuthController extends Controller
         else $r["auth"]="false";
         return response()->json($r);
     }
-
-    public function test() {
-        $userCSV = fopen(base_path() . '/src/user.csv', 'r');
-        while(($user = fgetcsv($userCSV, 1000, ":")) !== FALSE) {
-            echo($user);
-        }
-    }
 }
