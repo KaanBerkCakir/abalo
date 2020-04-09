@@ -17,9 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'AuthController@login')->name('login');
-Route::get('/logout', 'AuthController@logout')->name('logout');
-Route::get('/isloggedin', 'AuthController@isloggedin')->name('haslogin');
-Route::get('/test', 'AuthController@test')->name('test');
+Route::prefix('authentification')->group(function () {
+    Route::get('login', 'AuthController@login')->name('login');
+    Route::get('logout', 'AuthController@logout')->name('logout');
+    Route::get('isloggedin', 'AuthController@isloggedin')->name('haslogin');
+});
 
-Route::get('/article/{search}', 'ArticleController@findArticles');
+Route::prefix('article')->group(function () {
+    Route::get('find/{search}', 'ArticleController@findArticles');
+});
+
