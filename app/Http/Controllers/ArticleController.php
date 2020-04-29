@@ -19,4 +19,21 @@ class ArticleController extends Controller
         }*/
         return json_encode($articles);
     }
+
+    function createArticle(Request $request) {
+        $id = $request['id'];
+        $name = $request['name'];
+        $price = $request['price'];
+        $desc = $request['desc'];
+        $creator = $request['creator'];
+        $date = date('Y-m-d H:i:s');
+        \App\ABArticle::create([
+            'id' => $id,
+            'ab_name' => $name,
+            'ab_price' => $price,
+            'ab_description' => $desc,
+            'ab_creator_id' => $creator,
+            'ab_createdate' => $date
+        ]);
+    }
 }
