@@ -8,7 +8,7 @@ class ArticleController extends Controller
 {
     function findArticles($search) {
         $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$search.'%')->get();
-        $res = [];
+        /*$res = [];
         foreach($articles as $elem){
             array_push($res, ['id' => $elem->id,
                                     'name' => $elem->ab_name,
@@ -16,7 +16,7 @@ class ArticleController extends Controller
                                     'desc' => $elem->ab_description,
                                     'creator' => $elem->ab_creator_id,
                                     'date' => $elem->ab_createdate]);
-        }
-        return array(['articles' => $res]);
+        }*/
+        return json_encode($articles);
     }
 }
