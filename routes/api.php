@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::prefix('category')->group(function () {
     Route::get('all', 'CategoryController@getAll');
 });
+
+Route::prefix('article')->group(function () {
+    Route::get('find/{search}', 'ArticleController@findArticles');
+});
