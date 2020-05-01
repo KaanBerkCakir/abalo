@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CookieConsent</title>
+    <style>
+        #cookieConsent {
+            border: 3px solid #7FFFD4;
+            background-color: #7FFFD4;
+            position: absolute;
+            bottom: 0;
+            height: auto;
+            text-align: center;
+            horiz-align: center;
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body>
+<h2></h2>
+
+<div id="cookieConsent">Mit dem klicken auf dieses Banner, stimmen Sie zu das die Seite Cookies benutzen darf</div>
+<script>
+    document.getElementById("cookieConsent").addEventListener("click", consenting);
+
+    function consenting() {
+        alert("funktioniert");
+    }
+</script>
+</body>
+</html>
