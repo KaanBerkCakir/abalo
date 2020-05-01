@@ -23,6 +23,9 @@ class ArticleController extends Controller
 
     function createArticle(Request $request) {
         $name = $request['name'];
+        if(!$name) {
+            return response()->json(['message' => 'Es wurde leider kein Artikelname übergeben.']);
+        }
         $price = $request['price'];
         $desc = $request['desc'];
         $creator = $request['creator'];
