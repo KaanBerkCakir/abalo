@@ -19,13 +19,36 @@
 <body>
 <h2></h2>
 
-<div id="cookieConsent">Mit dem klicken auf dieses Banner, stimmen Sie zu das die Seite Cookies benutzen darf</div>
+
 <script>
+    let keks = document.cookie;
+    if ((keks[0] != 'c') && (keks[1] != 'c')){
+    document.body.innerHTML += '\ <div id="cookieConsent">Mit dem klicken auf dieses Banner, stimmen Sie zu das die Seite Cookies benutzen darf</div>\ ';
     document.getElementById("cookieConsent").addEventListener("click", consenting);
+    }
 
     function consenting() {
+        let keks = document.cookie;
+        if ((keks[0] != 'c') && (keks[1] != 'c')){
+            console.log("Initialisiere");
+        }
         alert("funktioniert");
+        document.cookie = 'cc';
+        console.log(document.cookie);
+        console.log("Hallo");
     }
+
+    function isConsentGiven() {
+        let keks = document.cookie;
+        if ((keks[0] == 'c') && (keks[1] == 'c')){
+            console.log("Initialisiere");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 </script>
 </body>
 </html>
