@@ -27,3 +27,7 @@ Route::prefix('article')->group(function () {
     Route::get('find/{search}', 'ArticleController@findArticles');
 });
 
+Route::get('cookie', function() {
+    return response()->file('../public/js/cookieConsent.js');
+});
+
