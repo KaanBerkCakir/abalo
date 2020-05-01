@@ -27,6 +27,9 @@ class ArticleController extends Controller
             return response()->json(['message' => 'Es wurde leider kein Artikelname übergeben.']);
         }
         $price = $request['price'];
+        if($price > 500000){
+            return response()->json(['message' => 'Wir sind doch nicht Krösus!']);
+        }
         $desc = $request['desc'];
         $creator = $request['creator'];
         $date = date('Y-m-d H:i:s');
