@@ -1,5 +1,6 @@
 /vendor
 /.idea
+public/js/.idea
 artisan
 composer.json
 composer.lock
