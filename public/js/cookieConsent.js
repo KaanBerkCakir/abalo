@@ -34,3 +34,7 @@ function isConsentGiven() {
         return false;
     } else return keks==='true';
 }
+
+function removeConsent() {
+    localStorage.removeItem('cookieconsent');
+}
