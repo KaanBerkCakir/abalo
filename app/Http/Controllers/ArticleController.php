@@ -41,5 +41,7 @@ class ArticleController extends Controller
             'ab_creator_id' => $creator->id,
             'ab_createdate' => $date
         ]);
+
+        return response()->json(['message' => 'Der Artikel wurde erfolgreich hinzugefügt.']);
     }
 }
