@@ -27,6 +27,10 @@ Route::prefix('article')->group(function () {
     Route::get('find/{search}', 'ArticleController@findArticles');
 });
 
+Route::prefix('category')->group(function () {
+    Route::get('show', 'CategoryController@showAll');
+});
+
 Route::get('application.js', function() {
     $res = response()->file('../public/js/application.js');
     $res->headers->set('Content-Type', 'application/javascript');

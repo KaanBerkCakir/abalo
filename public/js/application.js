@@ -86,7 +86,7 @@ function chooseMenu(num) {
             createNewArticle();
             break;
         case 2:
-            requestCategories();
+            showCategories();
             break;
         case 3:
             if (companyIsShown) {
@@ -315,32 +315,15 @@ function prepareCategories(result) {
     return res;
 }
 
-function showCategories(result) {
-    /*    if(contentContainer.childNodes.length > 1)
-        contentContainer.removeChild(contentContainer.childNodes[1]);*/
+function showCategories() {
     const xhr = new XMLHttpRequest();
-    xhr.open('get', 'includes/category_card.html?id=' + Math.random(), true);
+    xhr.open('GET', 'http://localhost:8000/category/show');
     xhr.onload = () => {
-        hiddenBox.innerHTML = xhr.responseText;
-        const container = document.createElement('div');
-        container.classList = ['row al-s-stretch'];
-
-        const head = document.getElementsByClassName('cat-card-header')[0];
-        const content = document.getElementsByClassName('cat-card-content')[0];
-        result.forEach((elem, index) => {
-            head.innerHTML = elem.parent;
-            let tmp = '';
-            elem.children.forEach(child => {
-                tmp += '<span>' + child + '</span>'
-            });
-
-            content.innerHTML = tmp;
-            let t1 = document.getElementsByClassName('cat-card')[0].cloneNode(true);
-            t1.classList.add(color[index % 4]);
-            container.appendChild(t1);
-        });
-        contentContainer.appendChild(container);
+        contentContainer.innerHTML = xhr.responseText;
     }
+    xhr.onerror = function () {
+        console.log('ffs', xhr.getAllResponseHeaders());
+    };
     xhr.send();
 }
 
