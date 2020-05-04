@@ -11,7 +11,7 @@ function startCookieConsent() {
         localStorage.setItem('cookieconsent', true);
         document.body.removeChild(box);
     };
-    yes.innerText = 'Einverstanden';
+    yes.innerText = 'Einverstanden!';
 
     const no = document.createElement('button');
     no.onclick =  () => {

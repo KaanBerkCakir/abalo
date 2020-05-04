@@ -27,7 +27,15 @@ Route::prefix('article')->group(function () {
     Route::get('find/{search}', 'ArticleController@findArticles');
 });
 
-Route::get('cookie', function() {
-    return response()->file('../public/js/cookieConsent.js');
+Route::get('cookie.js', function() {
+    $res = response()->file('../public/js/cookieConsent.js');
+    $res->headers->set('Content-Type', 'application/javascript');
+    return $res;
+});
+
+Route::get('cookie.css', function() {
+    $res = response()->file('../public/css/cookieConsent.css');
+    $res->headers->set('Content-Type', 'text/css');
+    return $res;
 });
 
