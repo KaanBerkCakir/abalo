@@ -18,6 +18,7 @@ class ArticleController extends Controller
                                     'creator' => $elem->ab_creator_id,
                                     'date' => $elem->ab_createdate]);
         }*/
+        //return view('articles', ['articles' => $articles]);
         return json_encode($articles);
     }
 
@@ -43,5 +44,9 @@ class ArticleController extends Controller
         ]);
 
         return response()->json(['message' => 'Der Artikel wurde erfolgreich hinzugefügt.']);
+    }
+
+    function articleForm() {
+        return view('article_form');
     }
 }

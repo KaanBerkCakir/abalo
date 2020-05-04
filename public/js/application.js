@@ -244,21 +244,17 @@ function cartContains(id, cart) {
 function createNewArticle() {
     if(signedIn) {
         setActive('subitem11');
-        contentContainer.innerHTML = '<form method="POST"' +
-            'action="http://localhost:8000/api/article/create"' +
-            'onsubmit="return submitForm(this);" >' +
-            '<label for="aName">Artikel Name:</label><br>' +
-            '<input type="text" id="aName" name="name" required><br>' +
-            '<label for="aPreis">Preis in Euro:</label><br>' +
-            '<input type="number" id="aPreis" name="price" min=1><br>' +
-            '<label for="aBeschreibung">Artikel Beschreibung:</label><br>' +
-            '<textarea name="desc" rows="10" cols="30"></textarea><br>' +
-            '<input id="hidden-input" type="hidden" name="creator" value="">' +
-            '<input type="submit" value="Submit"/>\n' +
-            '</form>';
-
-        const hiddenInput = document.getElementById('hidden-input');
-        hiddenInput.value = signedIn;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8000/article/form');
+        xhr.onload = () => {
+            contentContainer.innerHTML = xhr.responseText;
+            const hiddenInput = document.getElementById('hidden-input');
+            hiddenInput.value = signedIn;
+        }
+        xhr.onerror = function () {
+            console.log('ffs', xhr.getAllResponseHeaders());
+        };
+        xhr.send();
     }else {
         alert('Bitte melde dich an, um fortfahren zu können');
     }
@@ -275,49 +271,9 @@ function submitForm(form) {
     return false;
 }
 
-function requestCategories() {
-    contentContainer.innerHTML = '';
-    setActive('item2');
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8000/api/category/all');
-    xhr.onload = () => {
-        const tmp = prepareCategories(JSON.parse(xhr.response));
-        showCategories(tmp);
-    }
-    xhr.onerror = function () {
-        console.log('fs', xhr.getAllResponseHeaders());
-    };
-    xhr.send();
-}
-
-function prepareCategories(result) {
-    const res = [];
-    let name = '';
-    let tmp = [];
-    result.forEach((elem, index) => {
-        if (elem.ab_parent) {
-            tmp.push(elem.ab_name);
-        } else {
-            if (index > 0) {
-                res.push({
-                    parent: name,
-                    children: tmp
-                });
-            }
-            name = elem.ab_name;
-            tmp = [];
-        }
-    });
-    res.push({
-        parent: name,
-        children: tmp
-    });
-    return res;
-}
-
 function showCategories() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8000/category/show');
+    xhr.open('GET', 'http://localhost:8000/category/all');
     xhr.onload = () => {
         contentContainer.innerHTML = xhr.responseText;
     }

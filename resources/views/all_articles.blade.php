@@ -15,7 +15,7 @@
                 <td>{{$elem->ab_description}}</td>
                 <td>{{$elem->ab_createdate}}</td>
                 <td>{{$elem->ab_price}}</td>
-                <td><button onclick="handleAdd($event, {{$index}})">Add</button></td>
+                <td><button onclick="handleAdd({{$index}})">Add</button></td>
             </tr>
         @endforeach
     </table>
