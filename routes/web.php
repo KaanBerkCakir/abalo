@@ -12,28 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::prefix('authentification')->group(function () {
-    Route::get('login', 'AuthController@login')->name('login');
-    Route::get('logout', 'AuthController@logout')->name('logout');
-    Route::get('isloggedin', 'AuthController@isloggedin')->name('haslogin');
-});
-
-Route::prefix('article')->group(function () {
-    Route::get('find/{search}', 'ArticleController@findArticles');
-});
-
-Route::prefix('category')->group(function () {
-    Route::get('show', 'CategoryController@showAll');
-});
-
 Route::get('application.js', function() {
     $res = response()->file('../public/js/application.js');
     $res->headers->set('Content-Type', 'application/javascript');
+    return $res;
+});
+
+Route::get('application.css', function() {
+    $res = response()->file('../public/css/application.css');
+    $res->headers->set('Content-Type', 'text/css');
     return $res;
 });
 
@@ -49,3 +36,16 @@ Route::get('cookie.css', function() {
     return $res;
 });
 
+Route::prefix('authentification')->group(function () {
+    Route::get('login', 'AuthController@login')->name('login');
+    Route::get('logout', 'AuthController@logout')->name('logout');
+    Route::get('isloggedin', 'AuthController@isloggedin')->name('haslogin');
+});
+
+Route::prefix('article')->group(function () {
+    Route::get('find/{search}', 'ArticleController@findArticles');
+});
+
+Route::prefix('category')->group(function () {
+    Route::get('all', 'CategoryController@showAll');
+});
