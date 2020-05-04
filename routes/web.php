@@ -27,6 +27,12 @@ Route::prefix('article')->group(function () {
     Route::get('find/{search}', 'ArticleController@findArticles');
 });
 
+Route::get('application.js', function() {
+    $res = response()->file('../public/js/application.js');
+    $res->headers->set('Content-Type', 'application/javascript');
+    return $res;
+});
+
 Route::get('cookie.js', function() {
     $res = response()->file('../public/js/cookieConsent.js');
     $res->headers->set('Content-Type', 'application/javascript');
