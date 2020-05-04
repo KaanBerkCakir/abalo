@@ -43,8 +43,8 @@ Route::prefix('authentification')->group(function () {
 });
 
 Route::prefix('article')->group(function () {
-    Route::get('find/{search}', 'ArticleController@findArticles');
     Route::get('form', 'ArticleController@articleForm');
+    Route::get('find/{search}', 'ArticleController@findArticles');
 });
 
 Route::prefix('category')->group(function () {

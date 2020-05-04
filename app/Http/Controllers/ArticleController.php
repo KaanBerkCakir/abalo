@@ -18,8 +18,8 @@ class ArticleController extends Controller
                                     'creator' => $elem->ab_creator_id,
                                     'date' => $elem->ab_createdate]);
         }*/
-        //return view('articles', ['articles' => $articles]);
-        return json_encode($articles);
+        return view('all_articles', ['articles' => $articles]);
+        //return json_encode($articles);
     }
 
     function createArticle(Request $request) {

@@ -25,10 +25,11 @@ const color = ['backBlue', 'backGreen', 'backRed', 'backYellow'];
 
 var shopIsShown = false;
 var companyIsShown = false;
-var articlesArray;
 var menuHTML = '';
-
+var articlesArray;
+var shownArticles;
 var signedIn;
+var cartClassList;
 
 menuJSON.forEach((item, itemIndex) => {
     menuHTML += '<span id="item' + itemIndex + '" class="item link" onclick="chooseMenu(' + itemIndex + ')">' + item.item + '</span>';
@@ -127,28 +128,46 @@ function showHome() {
 
 function requestArticles(input) {
     setActive('subitem10');
-    contentContainer.innerHTML = '';
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8000/api/article/find/' + input);
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.open('GET', 'http://localhost:8000/article/find/' + input);
     xhr.onload = () => {
-        articlesArray = JSON.parse(xhr.response);
+        contentContainer.innerHTML = xhr.responseText;
         const cart = JSON.parse(localStorage.getItem('cart'));
-        showCart(cart);
-        showArticles(cart);
+        articlesArray = JSON.parse(document.getElementById('all-articles-hidden').innerText);
+        document.getElementById('all-articles-hidden').remove();
+        cartClassList = document.getElementById('shopping-card-list').classList.toString();
+        updateLists();
+        showCart();
+        showArticles();
     }
     xhr.onerror = function () {
-        console.log('fs', xhr.getAllResponseHeaders());
     };
     xhr.send();
 }
 
-function showCart(cart) {
-    if (cart.length > 0) {
+function updateLists() {
+    shownArticles = [];
+    articlesArray.forEach(articlesElem => {
+        if (!cartContains(articlesElem.id)) {
+            shownArticles.push(articlesElem);
+        }
+    });
+}
 
+function showCart() {
+    const hidden = document.getElementById('shopping-card-null');
+    const list = document.getElementById('shopping-card-list');
+    const cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (cart.length > 0) {
+        hidden.classList = 'hidden';
+        list.classList = cartClassList;
+
+        let price = 0;
+        const ul = document.getElementById('all-articles-ul');
         let tableRows = '';
         cart.forEach((elem, index) => {
+            price += elem.ab_price;
             tableRows += '<li>\n' +
                 '<div  class="row">\n' +
                 '<span>' + elem.ab_name + '</span>\n' +
@@ -159,24 +178,11 @@ function showCart(cart) {
                 '</div>\n' +
                 '</li>';
         });
-
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', 'includes/shopping_cart.html?id=' + Math.random());
-        xhr.onload = () => {
-            hiddenBox.innerHTML = xhr.response;
-            const table = document.getElementById('shopping-card');
-            table.getElementsByTagName('ul')[0].innerHTML = tableRows;
-            const price = document.getElementById('shopping-card-total-costs');
-            let tmp = 0;
-            for (let item of cart) {
-                tmp += item.ab_price;
-            }
-            price.innerText = tmp + '€';
-            contentContainer.appendChild(table);
-        }
-        xhr.send();
+        ul.innerHTML = tableRows;
+        document.getElementById('shopping-card-total-costs').innerText = price + '€';
     } else {
-        contentContainer.innerText = 'Der Warenkorb ist leer.';
+        hidden.classList = '';
+        list.classList = 'hidden';
     }
 }
 
@@ -184,17 +190,19 @@ function handleRemove(num) {
     const items = JSON.parse(localStorage.getItem('cart'));
     items.splice(num, 1);
     localStorage.setItem('cart', JSON.stringify(items));
-    contentContainer.innerHTML = '';
-    showCart(items);
-    showArticles(items);
+    updateLists();
+    showCart();
+    showArticles();
 }
 
-function showArticles(cart) {
-    if (articlesArray.length > 0) {
-
+function showArticles() {
+    const hidden = document.getElementById('all-articles-null');
+    const list = document.getElementById('all-articles-list');
+    if (shownArticles.length > 0) {
+        hidden.classList.add('hidden');
+        list.classList.remove('hidden');
         let tableRows = '';
-        articlesArray.forEach((elem, index) => {
-            if (!cartContains(elem.id, cart)) {
+        shownArticles.forEach((elem, index) => {
                 tableRows += '<tr>\n' +
                     '<td>' + elem.id + '</td>\n' +
                     '<td>' + elem.ab_name + '</td>\n' +
@@ -203,38 +211,35 @@ function showArticles(cart) {
                     '<td>' + elem.ab_price + '</td>\n' +
                     '<td><button onclick="handleAdd(' + index + ')"><i class="fas fa-plus"></i></button></td>\n' +
                     '</tr>';
-            }
         });
 
-        const xhr = new XMLHttpRequest();
-        xhr.open('get', 'includes/article_table.html?id=' + Math.random());
-        xhr.onload = () => {
-            hiddenBox.innerHTML = '';
-            hiddenBox.innerHTML = xhr.response;
-            const table = document.getElementById('article-table');
-            table.innerHTML = table.innerHTML + tableRows;
-            contentContainer.appendChild(table);
-        }
-        xhr.send();
+        const head = document.getElementById('all-articles-head');
+        const tmp = document.createElement('div');
+        tmp.appendChild(head);
+        tableContent = tmp.innerHTML + tableRows;
+        list.innerHTML = tableContent;
+
     } else {
-        contentContainer.innerText = 'Keine Einträge vorhanden';
+        hidden.classList.remove('hidden');
+        list.classList.add('hidden');
     }
 }
 
 function handleAdd(num) {
     if (signedIn) {
         const items = JSON.parse(localStorage.getItem('cart'));
-        items.push(articlesArray[num]);
+        items.push(shownArticles[num]);
         localStorage.setItem('cart', JSON.stringify(items));
-        contentContainer.innerHTML = '';
-        showCart(items);
-        showArticles(items);
+        updateLists();
+        showCart();
+        showArticles();
     } else {
         alert('Sie müssen sich zuerst anmelden');
     }
 }
 
-function cartContains(id, cart) {
+function cartContains(id) {
+    const cart = JSON.parse(localStorage.getItem('cart'));
     for (let elem of cart) {
         if (elem.id === id) return true;
     }
@@ -242,7 +247,7 @@ function cartContains(id, cart) {
 }
 
 function createNewArticle() {
-    if(signedIn) {
+    if (signedIn) {
         setActive('subitem11');
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'http://localhost:8000/article/form');
@@ -252,10 +257,9 @@ function createNewArticle() {
             hiddenInput.value = signedIn;
         }
         xhr.onerror = function () {
-            console.log('ffs', xhr.getAllResponseHeaders());
         };
         xhr.send();
-    }else {
+    } else {
         alert('Bitte melde dich an, um fortfahren zu können');
     }
 }
@@ -278,7 +282,6 @@ function showCategories() {
         contentContainer.innerHTML = xhr.responseText;
     }
     xhr.onerror = function () {
-        console.log('ffs', xhr.getAllResponseHeaders());
     };
     xhr.send();
 }
@@ -322,7 +325,6 @@ function login() {
         updateUserButton();
     }
     xhr.onerror = function () {
-        console.log('ffs', xhr.getAllResponseHeaders());
     };
     xhr.send();
 }
@@ -339,8 +341,8 @@ function logout() {
         showHome();
     }
     xhr.onerror = function () {
-        console.log('ffs', xhr.getAllResponseHeaders());
     };
     xhr.send();
 }
+
 initView();

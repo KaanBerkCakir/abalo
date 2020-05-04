@@ -1,24 +1,21 @@
-@if(count($articles) > 0)
-    <table>
-        <tr id="head">
-            <th>Artikel-Id</th>
-            <th>Name</th>
-            <th>Beschreibung</th>
-            <th>Erstellt am</th>
-            <th>Preis</th>
-            <th>Wk</th>
-        </tr>
-        @foreach($articles as $index => $elem)
-            <tr>
-                <td>{{$elem->id}}</td>
-                <td>{{$elem->ab_name}}</td>
-                <td>{{$elem->ab_description}}</td>
-                <td>{{$elem->ab_createdate}}</td>
-                <td>{{$elem->ab_price}}</td>
-                <td><button onclick="handleAdd({{$index}})">Add</button></td>
-            </tr>
-        @endforeach
-    </table>
-@else
-    Es wurden keine Artikel gefunden.
-@endif
+<span id="shopping-card-null">Der Warenkorb ist leer.</span>
+<div id="shopping-card-list" class="al-s-stretch column al-s-stretch">
+    <span class="al-s-center">Warenkorb</span>
+    <ul id="all-articles-ul">
+    </ul>
+    <span id="shopping-card-total-costs" class="al-s-end">0€</span>
+</div>
+
+<span id="all-articles-null">Keine Artikel vorhanden.</span>
+<table id="all-articles-list">
+    <tr id="all-articles-head">
+        <th>Artikel-Id</th>
+        <th>Name</th>
+        <th>Beschreibung</th>
+        <th>Erstellt am</th>
+        <th>Preis</th>
+        <th>Wk</th>
+    </tr>
+</table>
+<div id="all-articles-hidden">{{$articles}}</div>
+
