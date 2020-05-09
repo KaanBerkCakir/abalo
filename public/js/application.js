@@ -276,6 +276,7 @@ function submitForm(form) {
 }
 
 function showCategories() {
+    setActive('item2');
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'http://localhost:8000/category/all');
     xhr.onload = () => {
