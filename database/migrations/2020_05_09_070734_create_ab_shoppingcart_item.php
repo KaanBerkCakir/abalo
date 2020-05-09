@@ -37,6 +37,8 @@ class CreateAbShoppingcartItem extends Migration
                 ->on('ab_article')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->unique(['ab_shoppingcart_id', 'ab_article_id']);
         });
     }
 

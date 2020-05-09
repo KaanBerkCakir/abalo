@@ -20,7 +20,12 @@ class ShoppingcartController extends Controller
     }
 
     function addArticle($cart, $article) {
-
+        $date = date('Y-m-d H:i:s');
+        \App\ABShoppingcartItem::create([
+            'ab_shoppingcart_id' => $cart,
+            'ab_article_id' => $article,
+            'ab_createdate' => $date
+        ]);
     }
 
     function deleteArticle($cart, $article) {
