@@ -31,6 +31,6 @@ Route::prefix('article')->group(function () {
 Route::prefix('shoppingcart')->group(function () {
     Route::get('{creator}', 'ShoppingcartController@getCart');
     Route::delete('delete/{cart}', 'ShoppingcartController@deletCart');
-    Route::post('addArticle/{cart}/{article}', 'ShoppingcartController@addArticle');
+    Route::get('addArticle/{cart}/{article}', 'ShoppingcartController@addArticle');
     Route::delete('deleteArticle/{cart}/{article}', 'ShoppingcartController@deleteArticle');
 });

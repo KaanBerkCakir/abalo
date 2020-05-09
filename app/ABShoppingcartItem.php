@@ -17,7 +17,7 @@ class ABShoppingcartItem extends Model
         return $this->belongsTo('App\ABShoppingcart', 'ab_shoppingcart_id');
     }
 
-    public function articles() {
-        return $this->hasMany('App\ABArticle', 'ab_article_id');
+    public function article() {
+        return $this->belongsTo('App\ABArticle', 'ab_article_id');
     }
 }
