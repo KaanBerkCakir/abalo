@@ -14,10 +14,19 @@ class CreateAbUser extends Migration
     public function up()
     {
         Schema::create('ab_user', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('Primärschlüssel');
-            $table->string('ab_name', 80)->unique()->comment('Name');
-            $table->string('ab_password', 200)->comment('Passwort');
-            $table->string('ab_mail', 200)->unique()->comment('E-Mail-Adresse');
+            $table->bigIncrements('id')
+                ->comment('Primärschlüssel');
+
+            $table->string('ab_name', 80)
+                ->unique()
+                ->comment('Name');
+
+            $table->string('ab_password', 200)
+                ->comment('Passwort');
+
+            $table->string('ab_mail', 200)
+                ->unique()
+                ->comment('E-Mail-Adresse');
         });
     }
 

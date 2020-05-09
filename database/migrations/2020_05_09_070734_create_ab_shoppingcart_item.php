@@ -14,13 +14,29 @@ class CreateAbShoppingcartItem extends Migration
     public function up()
     {
         Schema::create('ab_shoppingcart_item', function (Blueprint $table) {
-            $table->bigIncrements('id')->comment('Primärschlüssel');
-            $table->bigInteger('ab_shoppingcart_id')->comment('Referenz auf den Warenkorb');
-            $table->bigInteger('ab_article_id')->comment('Referenz auf den Artikel');
-            $table->timestamp('ab_createdate', 0)->comment('Zeitpunkt der Erstellung');
+            $table->bigIncrements('id')
+                ->comment('Primärschlüssel');
 
-            $table->foreign('ab_shoppingcart_id')->references('id')->on('ab_shoppingcart');
-            $table->foreign('ab_article_id')->references('id')->on('ab_article');
+            $table->bigInteger('ab_shoppingcart_id')
+                ->comment('Referenz auf den Warenkorb');
+
+            $table->bigInteger('ab_article_id')
+                ->comment('Referenz auf den Artikel');
+
+            $table->timestamp('ab_createdate', 0)
+                ->comment('Zeitpunkt der Erstellung');
+
+            $table->foreign('ab_shoppingcart_id')
+                ->references('id')
+                ->on('ab_shoppingcart')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('ab_article_id')
+                ->references('id')
+                ->on('ab_article')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
