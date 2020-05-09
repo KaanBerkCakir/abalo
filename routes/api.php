@@ -25,4 +25,5 @@ Route::prefix('category')->group(function () {
 Route::prefix('article')->group(function () {
     Route::get('find/{search}', 'ArticleController@findArticles');
     Route::post('create', 'ArticleController@createArticle');
+    Route::delete('delete/{id}', 'ArticleController@deleteArticle');
 });

@@ -49,4 +49,8 @@ class ArticleController extends Controller
     function articleForm() {
         return view('article_form');
     }
+
+    function deleteArticle($id) {
+        \App\ABArticle::find($id)->delete();
+    }
 }
