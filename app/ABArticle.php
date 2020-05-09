@@ -12,4 +12,16 @@ class ABArticle extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['id', 'ab_name', 'ab_price', 'ab_description', 'ab_creator_id', 'ab_createdate'];
+
+    public function creator() {
+        return $this->belongsTo('App\ABUser', 'ab_creator_id');
+    }
+
+    public function categories() {
+        return $this->belongsToMany('App\ABCategory', 'ab_article_has_articlecategory', 'id', 'ab_article_id');
+    }
+
+    public function cartItem() {
+        return $this->belongsTo('App\ABShoppingcartItem', 'ab_article_id');
+    }
 }
