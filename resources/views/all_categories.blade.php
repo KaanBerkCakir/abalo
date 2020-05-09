@@ -4,7 +4,7 @@
             <div class="cat-card-header al-s-center">{{$parent['parent']}}</div>
             <div class="cat-card-content column">
                 @foreach($parent['children'] as $child)
-                    <span>{{$child}}</span>
+                    <span>{{$child->ab_name}}</span>
                 @endforeach
             </div>
         </div>

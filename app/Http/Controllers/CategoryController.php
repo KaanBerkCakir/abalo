@@ -14,22 +14,12 @@ class CategoryController extends Controller
 
     function showAll()
     {
-        $categories = \App\ABCategory::all();
+        $categories = \App\ABCategory::all()->whereNull('ab_parent');
         $res = [];
-        $name = '';
-        $tmp = [];
-        foreach ($categories as $index => $elem) {
-            if ($elem->ab_parent) {
-                array_push($tmp, $elem->ab_name);
-            } else {
-                if ($index > 0) {
-                    array_push($res, array('parent' => $name, 'children' => $tmp));
-                }
-                $name = $elem->ab_name;
-                $tmp = [];
-            }
+        foreach ($categories as $parent) {
+            $children = $parent->children()->select(['ab_name'])->get();
+            array_push($res, array('parent' => $parent->ab_name, 'children' => $children));
         }
-        array_push($res, array('parent' => $name, 'children' => $tmp));
         return view('all_categories', ['categoryGroups' => $res, 'colors' => ['backBlue', 'backGreen', 'backRed', 'backYellow']]);
 //        return json_encode($res[0])->parent;
     }
