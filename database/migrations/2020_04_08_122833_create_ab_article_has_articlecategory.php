@@ -14,9 +14,9 @@ class CreateAbArticleHasArticlecategory extends Migration
     public function up()
     {
         Schema::create('ab_article_has_articlecategory', function (Blueprint $table) {
-            $table->increments('id')->comment('Primärschlüssel');
-            $table->integer('ab_articlecategory_id')->comment('Referenz auf eine Artikelkategorie');
-            $table->integer('ab_article_id')->comment('Referenz auf einen Artikel artikelkategorie_id, artikel_id');
+            $table->bigIncrements('id')->comment('Primärschlüssel');
+            $table->bigInteger('ab_articlecategory_id')->comment('Referenz auf eine Artikelkategorie');
+            $table->bigInteger('ab_article_id')->unique()->comment('Referenz auf einen Artikel artikelkategorie_id, artikel_id');
 
             $table->foreign('ab_articlecategory_id')->references('id')->on('ab_articlecategory');
             $table->foreign('ab_article_id')->references('id')->on('ab_article');

@@ -14,10 +14,10 @@ class CreateAbArticlecategory extends Migration
     public function up()
     {
         Schema::create('ab_articlecategory', function (Blueprint $table) {
-            $table->increments('id')->comment('Primärschlüssel');
+            $table->bigIncrements('id')->comment('Primärschlüssel');
             $table->string('ab_name', 100)->unique()->comment('Name');
             $table->string('ab_description', 1000)->nullable()->comment('Beschreibung');
-            $table->integer('ab_parent')->nullable()->comment('Referenz auf die mögliche Elternkategorie.
+            $table->bigInteger('ab_parent')->nullable()->comment('Referenz auf die mögliche Elternkategorie.
 Artikelkategorien sind hierarchisch organisiert. Eine Kategorie
 kann beliebig viele Kindkategorien haben. Eine Kategorie kann
 nur eine Elternkategorie besitzen.
