@@ -23,7 +23,13 @@ Route::prefix('category')->group(function () {
 });
 
 Route::prefix('article')->group(function () {
-    Route::get('find/{search}', 'ArticleController@findArticles');
+    Route::get('{search}', 'ArticleController@findArticles');
     Route::post('create', 'ArticleController@createArticle');
     Route::delete('delete/{id}', 'ArticleController@deleteArticle');
+});
+
+Route::prefix('shoppingcart')->group(function () {
+    Route::get('{user}', 'ShoppingCartController@getCart');
+    Route::post('add/{cart}/{article}', 'ShoppingCartController@addArticle');
+    Route::delete('delete/{cart}/{article}', 'ShoppingCartController@deleteArticle');
 });
