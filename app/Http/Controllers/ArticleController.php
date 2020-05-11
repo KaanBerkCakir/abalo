@@ -19,7 +19,11 @@ class ArticleController extends Controller
                                     'date' => $elem->ab_createdate]);
         }*/
         return view('all_articles', ['articles' => $articles]);
-        //return json_encode($articles);
+    }
+
+    function getArticles($input) {
+        $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->get();
+        return json_encode($articles);
     }
 
     function createArticle(Request $request) {

@@ -29,6 +29,7 @@ var menuHTML = '';
 var articlesArray;
 var shownArticles;
 var signedIn;
+var cartId;
 var cartClassList;
 
 menuJSON.forEach((item, itemIndex) => {
@@ -55,12 +56,9 @@ function initView() {
         localStorage.removeItem('cart');
     } else {
         signedIn = localStorage.getItem('user') === null ? null : localStorage.getItem('user');
+        cartId = localStorage.getItem('cart') === null ? null : localStorage.getItem('cart');
     }
     updateUserButton();
-
-    if (!localStorage.getItem('cart')) {
-        localStorage.setItem('cart', JSON.stringify([]));
-    }
 
     menuElem.innerHTML = menuHTML;
     showHome();
@@ -82,6 +80,9 @@ function chooseMenu(num) {
             break;
         case 10:
             requestArticles('%');
+            if(signedIn) {
+                requestCart();
+            }
             break;
         case 11:
             createNewArticle();
@@ -129,16 +130,10 @@ function showHome() {
 function requestArticles(input) {
     setActive('subitem10');
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://localhost:8000/article/find/' + input);
+    xhr.open('GET', 'http://localhost:8000/api/article/' + input);
     xhr.onload = () => {
-        contentContainer.innerHTML = xhr.responseText;
-        const cart = JSON.parse(localStorage.getItem('cart'));
-        articlesArray = JSON.parse(document.getElementById('all-articles-hidden').innerText);
-        document.getElementById('all-articles-hidden').remove();
-        cartClassList = document.getElementById('shopping-card-list').classList.toString();
-        updateLists();
-        showCart();
-        showArticles();
+        articlesArray = JSON.parse(xhr.response);
+        console.log(articlesArray);
     }
     xhr.onerror = function () {
     };

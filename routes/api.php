@@ -23,7 +23,7 @@ Route::prefix('category')->group(function () {
 });
 
 Route::prefix('article')->group(function () {
-    Route::get('{search}', 'ArticleController@findArticles');
+    Route::get('{input}', 'ArticleController@getArticles');
     Route::post('create', 'ArticleController@createArticle');
     Route::delete('delete/{id}', 'ArticleController@deleteArticle');
 });
