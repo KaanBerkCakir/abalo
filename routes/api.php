@@ -18,19 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('category')->group(function () {
-    Route::get('all', 'CategoryController@getAll');
+Route::prefix('categories')->group(function () {
+    Route::get('', 'CategoryController@getAll');
 });
 
-Route::prefix('article')->group(function () {
+Route::prefix('articles')->group(function () {
     Route::get('{input}', 'ArticleController@getArticles');
-    Route::post('create', 'ArticleController@createArticle');
-    Route::delete('delete/{id}', 'ArticleController@deleteArticle');
+    Route::post('', 'ArticleController@createArticle');
+    Route::delete('{id}', 'ArticleController@deleteArticle');
 });
 
 Route::prefix('shoppingcart')->group(function () {
     Route::get('{creator}', 'ShoppingcartController@getCart');
-    Route::delete('delete/{cart}', 'ShoppingcartController@deletCart');
-    Route::get('addArticle/{cart}/{article}', 'ShoppingcartController@addArticle');
-    Route::delete('deleteArticle/{cart}/{article}', 'ShoppingcartController@deleteArticle');
+    Route::delete('{cart}', 'ShoppingcartController@deletCart');
+    Route::get('{cart}/articles/{article}', 'ShoppingcartController@addArticle');
+    Route::delete('{cart}/articles/{article}', 'ShoppingcartController@deleteArticle');
 });
