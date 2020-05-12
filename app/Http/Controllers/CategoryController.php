@@ -8,8 +8,13 @@ class CategoryController extends Controller
 {
     function getAll()
     {
-        $categories = \App\ABCategory::all();
-        return json_encode($categories);
+        $categories = \App\ABCategory::all()->whereNull('ab_parent');
+        $res = [];
+        foreach ($categories as $parent) {
+            $children = $parent->children()->select(['ab_name'])->get();
+            array_push($res, array('parent' => $parent->ab_name, 'children' => $children));
+        }
+        return json_encode($res, JSON_PRETTY_PRINT);
     }
 
     function showAll()
