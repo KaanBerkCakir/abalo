@@ -22,6 +22,6 @@ class ABCategory extends Model
     }
 
     public function articles() {
-        return $this->belongsToMany('App\ABArticle','ab_article_has_articlecategory', 'id', 'ab_articlecategory_id');
+        return $this->belongsToMany('App\ABArticle','ab_article_has_articlecategory', 'ab_articlecategory_id','ab_article_id');
     }
 }

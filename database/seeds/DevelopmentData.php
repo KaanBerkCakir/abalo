@@ -28,5 +28,16 @@ class DevelopmentData extends Seeder
         while(($category = fgetcsv($catCSV, 1000, ";")) !== FALSE) {
             \App\ABCategory::create(['id' => $category[0], 'ab_name' => $category[1], 'ab_parent' => $category[2] == 'NULL' ? NULL : $category[2]]);
         }
+
+        $hasCatCSV = fopen(base_path() . '/src/article_has_articlecategory.csv', 'r');
+        fgetcsv($hasCatCSV);
+        while(($hasCat = fgetcsv($hasCatCSV, 1000, ";")) !== FALSE) {
+            // Find Article with ID
+            $article = \App\ABArticle::find($hasCat[1]);
+            $category = \App\ABCategory::find($hasCat[0]);
+            //Add category
+            $article->categories()->save($category);
+
+        }
     }
 }
