@@ -26,6 +26,12 @@ class ArticleController extends Controller
         return json_encode($articles);
     }
 
+    function getArticlesLimited($input, $limit) {
+        if($limit < 1) return $this->getArticles($input);
+        $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->take($limit)->get();
+        return json_encode($articles);
+    }
+
     function createArticle(Request $request) {
         $name = $request['name'];
         if(!$name) {
