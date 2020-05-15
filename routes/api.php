@@ -28,9 +28,10 @@ Route::prefix('articles')->group(function () {
     Route::delete('{id}', 'ArticleController@deleteArticle');
 });
 
-Route::prefix('shoppingcart')->group(function () {
+Route::prefix('shoppingcarts')->group(function () {
     Route::get('{creator}', 'ShoppingcartController@getCart');
     Route::delete('{cart}', 'ShoppingcartController@deletCart');
+    Route::get('{cart}/articles', 'ShoppingcartController@getArticles');
     Route::get('{cart}/articles/{article}', 'ShoppingcartController@addArticle');
     Route::delete('{cart}/articles/{article}', 'ShoppingcartController@deleteArticle');
 });

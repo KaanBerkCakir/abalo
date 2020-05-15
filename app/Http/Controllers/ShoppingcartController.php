@@ -42,7 +42,7 @@ class ShoppingcartController extends Controller
         return $this->getArticles($cart);
     }
 
-    private function getArticles($cartId)
+    function getArticles($cartId)
     {
         $items = \App\ABShoppingcart::find($cartId)->items()->get();
         $tmp = [];
