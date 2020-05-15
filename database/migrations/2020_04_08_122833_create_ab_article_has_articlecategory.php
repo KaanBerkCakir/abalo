@@ -21,7 +21,6 @@ class CreateAbArticleHasArticlecategory extends Migration
                 ->comment('Referenz auf eine Artikelkategorie');
 
             $table->bigInteger('ab_article_id')
-                ->unique()
                 ->comment('Referenz auf einen Artikel artikelkategorie_id, artikel_id');
 
             $table->foreign('ab_articlecategory_id')
@@ -35,6 +34,8 @@ class CreateAbArticleHasArticlecategory extends Migration
                 ->on('ab_article')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->unique(['ab_articlecategory_id', 'ab_article_id']);
         });
     }
 

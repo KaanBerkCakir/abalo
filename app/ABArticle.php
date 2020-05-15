@@ -18,7 +18,7 @@ class ABArticle extends Model
     }
 
     public function categories() {
-        return $this->belongsToMany('App\ABCategory', 'ab_article_has_articlecategory', 'id', 'ab_article_id');
+        return $this->belongsToMany('App\ABCategory', 'ab_article_has_articlecategory',  'ab_article_id', 'ab_articlecategory_id');
     }
 
     public function cartItem() {
