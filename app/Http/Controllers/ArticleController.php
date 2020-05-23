@@ -23,13 +23,13 @@ class ArticleController extends Controller
 
     function getArticles($input) {
         $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->get();
-        return json_encode($articles);
+        return response()->json(['articles' => $articles]);
     }
 
     function getArticlesLimited($input, $limit) {
         if($limit < 1) return $this->getArticles($input);
         $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->take($limit)->get();
-        return json_encode($articles);
+        return response()->json(['articles' => $articles]);
     }
 
     function createArticle(Request $request) {

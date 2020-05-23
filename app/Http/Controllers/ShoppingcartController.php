@@ -17,7 +17,7 @@ class ShoppingcartController extends Controller
                 'ab_creator_id' => $user->id,
                 'ab_createdate' => $date]);
         }
-        return json_encode($cart);
+        return response()->json(['cart' => $cart]);
     }
 
     function addArticle($cart, $article)
@@ -45,10 +45,10 @@ class ShoppingcartController extends Controller
     function getArticles($cartId)
     {
         $items = \App\ABShoppingcart::find($cartId)->items()->get();
-        $tmp = [];
+        $res = [];
         foreach ($items as $item) {
-            array_push($tmp, $item->article()->first());
+            array_push($res, $item->article()->first());
         }
-        return $tmp;
+        return response()->json(['articles' => $res]);
     }
 }
