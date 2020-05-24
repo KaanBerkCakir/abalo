@@ -11,10 +11,10 @@ class CategoryController extends Controller
         $categories = \App\ABCategory::all()->whereNull('ab_parent');
         $res = [];
         foreach ($categories as $parent) {
-            $children = $parent->children()->select(['ab_name'])->get();
+            $children = $parent->children()->select(['id', 'ab_name'])->get();
             array_push($res, array('parent' => $parent->ab_name, 'children' => $children));
         }
-        return json_encode($res, JSON_PRETTY_PRINT);
+        return response()->json(['categories' => $res]);
     }
 
     function showAll()

@@ -29,6 +29,12 @@ class ArticleController extends Controller
     function getArticlesLimited($input, $limit, $offset) {
         if($limit < 1) return $this->getArticles($input);
         $articles = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->skip($offset)->take($limit)->get();
+        $amount = \App\ABArticle::where('ab_name', 'ILIKE', '%'.$input.'%')->orderBy('id', 'ASC')->count();
+        return response()->json(['articles' => $articles, 'amount' => $amount]);
+    }
+
+    function getUserArticles ($usernmae) {
+        $articles = \App\ABUser::where(['ab_name' => $usernmae])->first()->articles;
         return response()->json(['articles' => $articles]);
     }
 

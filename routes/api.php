@@ -25,6 +25,7 @@ Route::prefix('categories')->group(function () {
 Route::prefix('articles')->group(function () {
     Route::get('{input}', 'ArticleController@getArticles');
     Route::get('{input}/limit/{limit}/offset/{offset}', 'ArticleController@getArticlesLimited');
+    Route::get('/user/{username}', 'ArticleController@getUserArticles');
     Route::post('', 'ArticleController@createArticle');
     Route::delete('{id}', 'ArticleController@deleteArticle');
 });
