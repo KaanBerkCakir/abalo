@@ -358,6 +358,7 @@ Vue.component("SiteNavBarComponent", () => import("./components/SiteNavBarCompon
 
 Vue.component("HomeComponent", () => import("./components/HomeComponent.vue"));
 Vue.component("AllArticlesComponent", () => import("./components/AllArticlesComponent.vue"));
+Vue.component("MyArticlesComponent", () => import("./components/MyArticlesComponent.vue"));
 Vue.component("CategoryComponent", () => import("./components/CategoryComponent.vue"));
 
 var allArticles = [];
