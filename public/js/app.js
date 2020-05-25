@@ -32019,6 +32019,9 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component("SiteHeaderComponent", function () {
   return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/SiteHeaderComponent.vue */ "./resources/js/components/SiteHeaderComponent.vue"));
 });
+Vue.component("SiteNavBarComponent", function () {
+  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/SiteNavBarComponent.vue */ "./resources/js/components/SiteNavBarComponent.vue"));
+});
 var allArticles = [];
 var cart;
 new Vue({
@@ -32037,6 +32040,7 @@ new Vue({
   },
   methods: {
     choose: function choose(link) {
+      console.log('tresdf');
       this.choice = link;
 
       if (link === 10) {
