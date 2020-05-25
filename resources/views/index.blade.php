@@ -20,7 +20,7 @@
                                 v-on:limit="setLimit" v-on:categroy="setCategory"
                                 v-on:set-site="updateSite"></all-articles-component>
 {{--        <my-articles-component v-else-if="choice === 11" :signed-in="user"></my-articles-component>--}}
-{{--        <category-component v-else-if="choice === 2" :colors='colors'></category-component>--}}
+        <category-component v-else-if="choice === 2" :colors='colors'></category-component>
     </div>
 </div>
 <script src="./js/app.js"></script>

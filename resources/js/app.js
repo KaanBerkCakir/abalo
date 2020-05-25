@@ -1,4 +1,5 @@
 require('./bootstrap');
+require ('../sass/empty.scss');
 /*
 const inputSearch = document.getElementById('searchText');
 const userButton = document.getElementById('user-button');
@@ -354,8 +355,10 @@ function logout() {
 window.Vue = require('vue');
 Vue.component("SiteHeaderComponent", () => import("./components/SiteHeaderComponent.vue"));
 Vue.component("SiteNavBarComponent", () => import("./components/SiteNavBarComponent.vue"));
+
 Vue.component("HomeComponent", () => import("./components/HomeComponent.vue"));
 Vue.component("AllArticlesComponent", () => import("./components/AllArticlesComponent.vue"));
+Vue.component("CategoryComponent", () => import("./components/CategoryComponent.vue"));
 
 var allArticles = [];
 var cart;
