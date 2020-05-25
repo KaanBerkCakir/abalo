@@ -354,6 +354,9 @@ function logout() {
 window.Vue = require('vue');
 Vue.component("SiteHeaderComponent", () => import("./components/SiteHeaderComponent.vue"));
 Vue.component("SiteNavBarComponent", () => import("./components/SiteNavBarComponent.vue"));
+Vue.component("HomeComponent", () => import("./components/HomeComponent.vue"));
+Vue.component("AllArticlesComponent", () => import("./components/AllArticlesComponent.vue"));
+
 var allArticles = [];
 var cart;
 

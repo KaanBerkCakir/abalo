@@ -32017,10 +32017,16 @@ function logout() {
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component("SiteHeaderComponent", function () {
-  return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/SiteHeaderComponent.vue */ "./resources/js/components/SiteHeaderComponent.vue"));
+  return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/SiteHeaderComponent.vue */ "./resources/js/components/SiteHeaderComponent.vue"));
 });
 Vue.component("SiteNavBarComponent", function () {
-  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/SiteNavBarComponent.vue */ "./resources/js/components/SiteNavBarComponent.vue"));
+  return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/SiteNavBarComponent.vue */ "./resources/js/components/SiteNavBarComponent.vue"));
+});
+Vue.component("HomeComponent", function () {
+  return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/HomeComponent.vue */ "./resources/js/components/HomeComponent.vue"));
+});
+Vue.component("AllArticlesComponent", function () {
+  return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/AllArticlesComponent.vue */ "./resources/js/components/AllArticlesComponent.vue"));
 });
 var allArticles = [];
 var cart;
@@ -32040,7 +32046,6 @@ new Vue({
   },
   methods: {
     choose: function choose(link) {
-      console.log('tresdf');
       this.choice = link;
 
       if (link === 10) {
