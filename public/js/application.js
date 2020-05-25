@@ -1,36 +1,16 @@
+/*
 const inputSearch = document.getElementById('searchText');
 const userButton = document.getElementById('user-button');
 const contentContainer = document.getElementById('content');
 const hiddenBox = document.getElementById('hiddenBox');
 const menuElem = document.getElementById('menu');
-const menuJSON = [
-    {
-        item: 'Home',
-        subitems: []
-    },
-    {
-        item: 'Shop',
-        subitems: ['Stöbern', 'Anbieten']
-    },
-    {
-        item: 'Kategorien',
-        subitems: []
-    },
-    {
-        item: 'Unternehmen',
-        subitems: ['Philosophie', 'Karriere']
-    },
-];
+
 const color = ['backBlue', 'backGreen', 'backRed', 'backYellow'];
 
 var shopIsShown = false;
 var companyIsShown = false;
 var menuHTML = '';
-var articlesArray;
-var shownArticles;
 var signedIn;
-var cartId;
-var cartClassList;
 
 menuJSON.forEach((item, itemIndex) => {
     menuHTML += '<span id="item' + itemIndex + '" class="item link" onclick="chooseMenu(' + itemIndex + ')">' + item.item + '</span>';
@@ -61,13 +41,13 @@ function initView() {
     updateUserButton();
 
     menuElem.innerHTML = menuHTML;
-    showHome();
+    loadHomeView();
 }
 
 function chooseMenu(num) {
     switch (num) {
         case 0:
-            showHome();
+            loadHomeView();
             break;
         case 1:
             if (shopIsShown) {
@@ -79,16 +59,13 @@ function chooseMenu(num) {
             }
             break;
         case 10:
-            requestArticles('%');
-            if(signedIn) {
-                requestCart();
-            }
+            loadArticleListView();
             break;
         case 11:
-            createNewArticle();
+            loadCreateArticleView();
             break;
         case 2:
-            showCategories();
+            loadCategoriesView();
             break;
         case 3:
             if (companyIsShown) {
@@ -122,9 +99,39 @@ function showSubitems(num) {
     }
 }
 
-function showHome() {
+function loadHomeView() {
     setActive('item0');
-    contentContainer.innerHTML = 'Herzlich Willkommen!';
+    loadFile('../vue/start.html');
+}
+
+function loadCategoriesView() {
+    setActive('item2');
+    loadFile('../vue/categories.vue');
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:8000/api/categories');
+    xhr.onload = () => {
+        var vm = new Vue({
+            el: '#content',
+            data: {
+                categories: JSON.parse(xhr.response),
+                colors: color
+            }
+        });
+    }
+    xhr.onerror = function () {
+    };
+    xhr.send();
+}
+
+function loadFile(url) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', url+'?rand='+(Math.random() * 100));
+    xhr.onload = () => {
+        contentContainer.innerHTML = xhr.responseText;
+    }
+    xhr.onerror = function () {
+    };
+    xhr.send();
 }
 
 function requestArticles(input) {
@@ -133,7 +140,6 @@ function requestArticles(input) {
     xhr.open('GET', 'http://localhost:8000/api/article/' + input);
     xhr.onload = () => {
         articlesArray = JSON.parse(xhr.response);
-        console.log(articlesArray);
     }
     xhr.onerror = function () {
     };
@@ -341,4 +347,40 @@ function logout() {
     xhr.send();
 }
 
-initView();
+//initView();
+*/
+
+const menuJSON = [
+    {
+        item: 'Home',
+        subitems: []
+    },
+    {
+        item: 'Shop',
+        subitems: ['Stöbern', 'Anbieten']
+    },
+    {
+        item: 'Kategorien',
+        subitems: []
+    },
+    {
+        item: 'Unternehmen',
+        subitems: ['Philosophie', 'Karriere']
+    },
+];
+window.Vue = require('vue');
+Vue.component('index', require('./m3/index.vue'));
+
+
+new Vue({
+    el: '#container',
+});
+
+function cartContains(cart, id) {
+    for (let elem of cart) {
+        if (elem.id === id) {
+            return true;
+        }
+    }
+    return false;
+}

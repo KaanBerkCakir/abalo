@@ -50,3 +50,7 @@ Route::prefix('article')->group(function () {
 Route::prefix('category')->group(function () {
     Route::get('all', 'CategoryController@showAll');
 });
+Route::get('/newsite', function()
+{
+    return view('index');
+});
