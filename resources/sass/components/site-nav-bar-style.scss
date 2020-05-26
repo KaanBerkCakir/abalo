@@ -1,7 +1,7 @@
-@use 'general/style';
-@use 'general/colors';
-@use 'general/flex-style';
-@use 'general/action-style';
+@use '../general/style';
+@use '../general/colors';
+@use '../general/flex-style';
+@use '../general/action-style';
 
 .side-nav {
     @extend .column, .jc-between, .card;

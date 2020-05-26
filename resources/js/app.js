@@ -1,5 +1,4 @@
 require('./bootstrap');
-require ('../sass/empty.scss');
 /*
 const inputSearch = document.getElementById('searchText');
 const userButton = document.getElementById('user-button');

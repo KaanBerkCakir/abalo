@@ -1,9 +1,9 @@
 <template>
-    <div id="content" class="card grow-1 column al-center">
-        <div class="row al-s-stretch">
-            <div v-for="(parent, index) in categories" :class="{[colors[index%4]]:true}" class="cat-card column">
-                <div class="cat-card-header al-s-center">{{parent.parent}}</div>
-                <div class="cat-card-content column">
+    <div class="content--center">
+        <div class="category">
+            <div v-for="(parent, index) in categories" :class='"category__card--" + (index%4)'>
+                <div class="category__card--head">{{parent.parent}}</div>
+                <div class="category__card--body">
                     <span v-for="child in parent.children">{{child.ab_name}}</span>
                 </div>
             </div>
@@ -35,20 +35,3 @@
         }
     }
 </script>
-<style scoped>
-    .cat-card {
-        margin: 10px;
-        border-radius: 10px;
-        min-width: 125px;
-        padding: 20px;
-    }
-
-    .cat-card-header {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    .cat-card-content > span {
-        margin-bottom: 10px;
-    }
-</style>

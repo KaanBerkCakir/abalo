@@ -1,5 +1,5 @@
 <template>
-    <div id="content" class="card grow-1 column al-center">
+    <div class="content--center">
         <span>Herzlich Willkommen</span>
     </div>
 </template>

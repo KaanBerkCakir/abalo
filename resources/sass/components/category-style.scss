@@ -1,0 +1,32 @@
+@use '../general/colors';
+@use '../general/flex-style';
+
+
+.category {
+    @extend .row, .al-s-stretch;
+
+    &__card {
+        @for $i from 0 through 4 {
+            &--#{$i} {
+                @extend .column;
+                @include colors.colorize-pastel($i);
+                margin: 10px;
+                border-radius: 10px;
+                min-width: 125px;
+                padding: 20px;
+            }
+        }
+
+        &--head {
+            @extend .al-s-center;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        &--body {
+            @extend .column;
+            margin-bottom: 10px;
+        }
+    }
+}
+

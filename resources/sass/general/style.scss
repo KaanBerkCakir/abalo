@@ -1,4 +1,5 @@
 @use 'colors';
+@use 'flex-style';
 
 html, body {
     height: 100%;
@@ -19,4 +20,15 @@ body {
     border: 1px colors.$white solid;
     border-radius: 10px;
     background: white;
+}
+
+.content {
+    &--center {
+        @extend .card, .grow-1, .column, .al-center;
+        padding: 15px;
+    }
+    &--stretch {
+        @extend .card, .grow-1, .column, .al-stretch;
+        padding: 15px;
+    }
 }
