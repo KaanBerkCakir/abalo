@@ -1,7 +1,7 @@
 <template>
-    <div id="content" class="card grow-1 column al-center">
-        <div id="pagination" class="al-s-stretch row al-center jc-between">
-            <div style="width: 15%">
+    <div class="content--center">
+        <div class="pagination">
+            <div class="pagination__select-number">
                 <select v-model="limit" @change="selectLim">
                     <option value="5">5</option>
                     <option value="10">10</option>
@@ -10,16 +10,14 @@
                     <option value="0">Alle</option>
                 </select>
             </div>
-            <button class="icon-button white-icon" :class="{'disabled': !backwardsAllowed}"
-                    :disabled="!backwardsAllowed" @click="backward">
+            <button class="pagination__arrow" :disabled="!backwardsAllowed" @click="backward">
                 <i class="fas fa-angle-left"></i>
             </button>
-            <span class="white-icon">Seite: {{site}}</span>
-            <button class="icon-button white-icon" :class="{'disabled': !forwardsAllowed}" :disabled="!forwardsAllowed"
-                    @click="forward">
+            <span class="pagination__number">Seite: {{site}}</span>
+            <button class="pagination__arrow" :disabled="!forwardsAllowed" @click="forward">
                 <i class="fas fa-angle-right"></i>
             </button>
-            <div class="row jc-end" style="width: 15%">
+            <div class="pagination__select-category">
                 <select v-model="category" @change="selectCat">
                     <option value="all">Alle Kategorien</option>
                     <optgroup v-for="parent in categories" :label="parent.parent">
@@ -28,33 +26,30 @@
                 </select>
             </div>
         </div>
-        <span v-if="signedIn && articlesOnCart.length === 0" id="shopping-card-null">
-            Der Warenkorb ist leer.
-        </span>
-        <div v-else-if="signedIn && articlesOnCart.length > 0" id="shopping-card-list"
-             class="al-s-stretch column al-s-stretch">
-            <span class="al-s-center">Warenkorb</span>
-            <ul id="all-articles-ul">
+        <div v-if="signedIn" class="shopping-card">
+            <span v-if="articlesOnCart.length === 0" class="shopping-card__title">Der Warenkorb ist leer.</span>
+            <span v-if="articlesOnCart.length > 0" class="shopping-card__title">Warenkorb</span>
+            <ul v-if="articlesOnCart.length > 0">
                 <template v-for="elem in articlesOnCart">
                     <li>
-                        <div class="row">
+                        <div class="shopping-card__item">
                             <span>{{elem.ab_name}}</span>
-                            <span class="al-s-stretch grow-1" style="text-align: end">{{elem.ab_price}}€</span>
+                            <span class="shopping-card__item--price">{{elem.ab_price}}€</span>
                             <div>
-                                <button class="btn" @click="removeItem(elem.id)">
-                                    <i class="fas fa-minus-circle" style="color: #bc2d2d"></i>
+                                <button class="shopping-card__item--remove" @click="removeItem(elem.id)">
+                                    <i class="fas fa-minus-circle" style=""></i>
                                 </button>
                             </div>
                         </div>
                     </li>
                 </template>
             </ul>
-            <span id="shopping-card-total-costs" class="al-s-end">{{total()}}€</span>
+            <span v-if="articlesOnCart.length > 0" class="shopping-card__item--total-cost">{{total()}}€</span>
         </div>
 
-        <span v-if="buyableArticles.length === 0" id="all-articles-null">Keine Artikel vorhanden.</span>
-        <table v-if="buyableArticles.length > 0" id="all-articles-list">
-            <tr id="all-articles-head">
+        <span v-if="buyableArticles.length === 0" class="all-articles">Keine Artikel vorhanden.</span>
+        <table v-if="buyableArticles.length > 0" class="all-articles__table">
+            <tr class="all-articles__head">
                 <th>Artikel-Id</th>
                 <th>Name</th>
                 <th>Beschreibung</th>
