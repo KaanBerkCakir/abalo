@@ -1,0 +1,31 @@
+@use 'general/style';
+@use 'general/colors';
+@use 'general/flex-style';
+@use 'general/action-style';
+
+.nav-bar {
+    @extend .row, .al-end;
+    height: 7%;
+    min-height: 60px;
+}
+
+.nav-bar__title {
+    @extend .grow-1, .column, .jc-end;
+    margin-left: 30px;
+}
+
+.nav-bar__title > span:nth-child(1) {
+    color: colors.$green;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.nav-bar__title > span:nth-child(2) {
+    color: colors.$black;
+    font-size: 10px;
+}
+
+.login-button {
+    @extend .icon-button;
+    margin-right: 20px;
+}

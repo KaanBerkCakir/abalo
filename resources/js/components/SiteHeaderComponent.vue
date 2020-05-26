@@ -1,14 +1,14 @@
 <template>
-    <div id="navbar" class="row al-end">
-        <div id="title" class="grow-1 column jc-end">
+    <div class="nav-bar">
+        <div class="nav-bar__title">
             <span>Abalo</span>
             <span>Macht Altes Flüssig.</span>
         </div>
-        <input id="searchText" type="text" placeholder="Search.." v-model="search" v-on:input="searchForNames">
-        <button v-if="signedIn" class="icon-button login-button" @click="userInteraction(false)">
+        <input class="input-field" type="text" placeholder="Search.." v-model="search" v-on:input="searchForNames">
+        <button v-if="signedIn" class="login-button" @click="userInteraction(false)">
             <i class="fas fa-sign-out-alt"></i>
         </button>
-        <button v-else class="icon-button login-button" @click="userInteraction(true)">
+        <button v-else class="login-button" @click="userInteraction(true)">
             <i class="fas fa-sign-in-alt"></i>
         </button>
     </div>

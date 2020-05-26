@@ -2,10 +2,10 @@
     <div class="side-nav">
         <div class="menu">
             <template v-for="(item, itemIndex) in items">
-                <span :class="{active: itemIndex === choice}" class="menu__item"
+                <span :class="[(itemIndex === choice) ? 'menu__item--active': 'menu__item']"
                       @click="chooseMenu(itemIndex)">{{item.item}}</span>
                 <span v-for="(subitem, subitemIndex) in item.subitems"
-                      :class='"menu__sub-item--" + itemIndex'
+                      :class="[((itemIndex*10 + subitemIndex) === choice) ? 'menu__sub-item--' + itemIndex + '--active' : 'menu__sub-item--' + itemIndex]"
                       @click="chooseMenu(itemIndex*10 + subitemIndex)">{{subitem}}</span>
             </template>
         </div>
