@@ -1,18 +1,17 @@
 <template>
-    <div id="sidenav" class="card column jc-between">
-        <div id="menu" class="column al-s-center">
+    <div class="side-nav">
+        <div class="menu">
             <template v-for="(item, itemIndex) in items">
-                <span :id='"item" + itemIndex' :class="{active: itemIndex === choice}" class="item link"
+                <span :class="{active: itemIndex === choice}" class="menu__item"
                       @click="chooseMenu(itemIndex)">{{item.item}}</span>
-                <span v-for="(subitem, subitemIndex) in item.subitems" :id='"subitem" + itemIndex + subitemIndex'
-                      class="subitem link"
-                      :class="{[colors[itemIndex%4]]:true, hidden: hide[itemIndex], active: (itemIndex*10 + subitemIndex) === choice}"
+                <span v-for="(subitem, subitemIndex) in item.subitems"
+                      :class='"menu__sub-item--" + itemIndex'
                       @click="chooseMenu(itemIndex*10 + subitemIndex)">{{subitem}}</span>
             </template>
         </div>
-        <div id="impressum" class="column je">
-            <span>Kaan Berk Cakir</span>
-            <div class="row jc-between">
+        <div class="impressum">
+            <span class="impressum__item--1">Kaan Berk Cakir</span>
+            <div class="impressum__item--2">
                 <span>Jonas Schell</span>
                 <span><span onclick="removeConsent()">&copy;</span> Copyright</span>
             </div>

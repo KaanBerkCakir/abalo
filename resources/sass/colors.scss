@@ -1,0 +1,23 @@
+$white: #ffffff;
+$grey: #f0f0f0;
+$black: #393d3f;
+$green: #08b1a9;
+
+$blue-pastel: #cff0ee;
+$green-pastel: #cff0d4;
+$red-pastel: #f0d1cf;
+$yellow-pastel: #ecf0cf;
+
+@mixin colorize-pastel($num: 0) {
+    @if $num == 0 {
+        background: $blue-pastel;
+    } @else if $num == 1 {
+        background: $green-pastel;
+    } @else if $num == 2 {
+        background: $red-pastel;
+    } @else if $num == 3 {
+        background: $yellow-pastel;
+    } @else {
+        background: $blue-pastel;
+    }
+}

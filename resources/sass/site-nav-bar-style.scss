@@ -1,0 +1,44 @@
+@use 'style';
+@use 'colors';
+@use 'flex-style';
+
+.side-nav {
+    @extend .column, .jc-between, .card;
+    width: 12%;
+    min-width: 200px;
+}
+
+.menu {
+    @extend .column, .al-s-center;
+}
+
+.menu__item {
+    margin-top: 10%;
+    padding: 8px 20px;
+    background: colors.$grey;
+}
+
+@for $i from 0 through 3 {
+    .menu__sub-item--#{$i} {
+        @include colors.colorize-pastel($i);
+        padding: 8px 20px;
+    }
+}
+
+.impressum {
+    @extend .column;
+    padding: 10px 5px;
+    background: #393d3f;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.impressum__item--1 {
+    font-size: 12px;
+    color: colors.$grey;
+}
+
+.impressum__item--2 {
+    @extend .impressum__item--1;
+    @extend .row, .jc-between;
+}

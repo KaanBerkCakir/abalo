@@ -1,0 +1,22 @@
+@use 'colors';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: auto;
+    background: colors.$grey;
+}
+
+#container {
+    height: 100%;
+}
+
+.card {
+    margin: 20px;
+    border: 1px colors.$white solid;
+    border-radius: 10px;
+    background: white;
+}
