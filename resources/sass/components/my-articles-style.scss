@@ -11,32 +11,28 @@
     &--green {
         @extend .my-articles-item;
         @include style.card(colors.$green-pastel);
-
-        &:hover {
-            @extend .link;
-        }
     }
 
     &--yellow {
         @extend .my-articles-item;
         @include style.card(colors.$yellow-pastel);
-
-        &:hover {
-            @extend .link;
-        }
     }
 
     &--red {
         @extend .my-articles-item;
         @include style.card(colors.$red-pastel);
-
-        &:hover {
-            @extend .link;
-        }
     }
 
     &__head {
         @extend .row, .jc-between, .al-center;
-        margin-bottom: 10px;
+
+        &--opened {
+            @extend .my-articles-item__head;
+            margin-bottom: 10px;
+        }
+
+        &:hover {
+            @extend .link;
+        }
     }
 }

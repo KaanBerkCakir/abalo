@@ -38,6 +38,11 @@ class ArticleController extends Controller
         return response()->json(['articles' => $articles]);
     }
 
+    function getTrashedArticles($usernmae) {
+        $trashed = \App\ABUser::where(['ab_name' => $usernmae])->first()->articles()->onlyTrashed()->get();
+        return response()->json(['trashed' => $trashed]);
+    }
+
     function createArticle(Request $request) {
         $name = $request['name'];
         if(!$name) {
@@ -70,5 +75,13 @@ class ArticleController extends Controller
 
     function deleteArticle($id) {
         \App\ABArticle::find($id)->delete();
+    }
+
+    function restoreArticle($id) {
+        \App\ABArticle::withTrashed()->find($id)->restore();
+    }
+
+    function removeArticle($id) {
+        \App\ABArticle::withTrashed()->find($id)->forceDelete();
     }
 }

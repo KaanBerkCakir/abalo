@@ -37,6 +37,9 @@ class CreateAbArticle extends Migration
                 ->on('ab_user')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+
+            $table->softDeletes();
         });
     }
 
