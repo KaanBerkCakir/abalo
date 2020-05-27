@@ -32273,8 +32273,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/sanoj3008/Dokumente/Studium/abalo/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/sanoj3008/Dokumente/Studium/abalo/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\kaan_\Desktop\4tes Semester\Datenbanken und Webtechnologien 2\Praktikum\abalo\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\kaan_\Desktop\4tes Semester\Datenbanken und Webtechnologien 2\Praktikum\abalo\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

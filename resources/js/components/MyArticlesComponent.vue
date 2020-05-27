@@ -6,7 +6,12 @@
                 <i v-if="showCreate" class="fas fa-angle-up"></i>
                 <i v-else class="fas fa-angle-down"></i>
             </div>
-            <div class="column" v-if="showCreate">g</div>
+            <div class="column" v-if="showCreate">
+                // TODO create article
+
+
+
+            </div>
         </div>
         <div class="my-articles-item--yellow">
             <div :class="[showMy ? 'my-articles-item__head--opened' : 'my-articles-item__head']" @click="showHide(1)">
