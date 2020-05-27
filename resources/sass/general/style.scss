@@ -15,20 +15,22 @@ body {
     height: 100%;
 }
 
-.card {
+@mixin card ($color: colors.$white) {
     margin: 20px;
-    border: 1px colors.$white solid;
+    border: 1px $color solid;
     border-radius: 10px;
-    background: white;
+    background: $color;
 }
 
 .content {
     &--center {
-        @extend .card, .grow-1, .column, .al-center;
+        @extend .grow-1, .column, .al-center;
+        @include card(colors.$white);
         padding: 15px;
     }
     &--stretch {
-        @extend .card, .grow-1, .column, .al-stretch;
+        @extend .grow-1, .column, .al-stretch;
+        @include card(colors.$white);
         padding: 15px;
     }
 }

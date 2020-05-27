@@ -1,6 +1,7 @@
 @use '../general/colors';
 @use '../general/flex-style';
-
+@use '../general/action-style';
+@use '../general/style';
 
 .category {
     @extend .row, .al-s-stretch;

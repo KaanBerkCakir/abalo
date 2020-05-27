@@ -1,15 +1,15 @@
 <template>
-    <div id="content" class="card grow-1 column al-stretch">
-        <div class="backGreen articles-head column">
-            <div class="row jc-between al-center" @click="showHide(0)">
+    <div class="content--stretch">
+        <div class="my-articles-item--green">
+            <div class="my-articles-item__head" @click="showHide(0)">
                 <span>Neuer Artikel</span>
                 <i v-if="showCreate" class="fas fa-angle-up"></i>
                 <i v-else class="fas fa-angle-down"></i>
             </div>
             <div class="column" v-if="showCreate">g</div>
         </div>
-        <div class="backYellow articles-head column">
-            <div class="row jc-between al-center" @click="showHide(1)">
+        <div class="my-articles-item--yellow">
+            <div class="my-articles-item__head" @click="showHide(1)">
                 <span>Meine Artikel</span>
                 <i v-if="showMy" class="fas fa-angle-up"></i>
                 <i v-else class="fas fa-angle-down"></i>
@@ -18,8 +18,8 @@
                 <div v-for="elem in articles">{{elem.ab_name}}</div>
             </div>
         </div>
-        <div class="backRed articles-head column">
-            <div class="row jc-between al-center" @click="showHide(2)">
+        <div class="my-articles-item--red">
+            <div class="my-articles-item__head" @click="showHide(2)">
                 <span>gelöschte Artikel</span>
                 <i v-if="showDeleted" class="fas fa-angle-up"></i>
                 <i v-else class="fas fa-angle-down"></i>

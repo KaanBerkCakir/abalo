@@ -1,6 +1,7 @@
-@use '../general/action-style';
 @use '../general/colors';
 @use '../general/flex-style';
+@use '../general/action-style';
+@use '../general/style';
 
 .pagination {
     @extend .al-s-stretch, .row, .al-center, .jc-between;

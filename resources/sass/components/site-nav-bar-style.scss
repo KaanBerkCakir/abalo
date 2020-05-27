@@ -1,10 +1,11 @@
-@use '../general/style';
 @use '../general/colors';
 @use '../general/flex-style';
 @use '../general/action-style';
+@use '../general/style';
 
 .side-nav {
-    @extend .column, .jc-between, .card;
+    @extend .column, .jc-between;
+    @include style.card(colors.$white);
     width: 12%;
     min-width: 200px;
 }

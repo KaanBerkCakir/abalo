@@ -1,0 +1,42 @@
+@use '../general/colors';
+@use '../general/flex-style';
+@use '../general/action-style';
+@use '../general/style';
+
+.my-articles-item {
+    @extend .column;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+
+    &--green {
+        @extend .my-articles-item;
+        @include style.card(colors.$green-pastel);
+
+        :hover {
+            @extend .link;
+        }
+    }
+
+    &--yellow {
+        @extend .my-articles-item;
+        @include style.card(colors.$yellow-pastel);
+
+        :hover {
+            @extend .link;
+        }
+    }
+
+    &--red {
+        @extend .my-articles-item;
+        @include style.card(colors.$red-pastel);
+
+        :hover {
+            @extend .link;
+        }
+    }
+
+    &__head {
+        @extend .row, .jc-between, .al-center;
+        margin-bottom: 10px;
+    }
+}
