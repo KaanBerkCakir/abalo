@@ -5,7 +5,7 @@
                 <span :class="[(itemIndex === choice) ? 'menu__item--active': 'menu__item']"
                       @click="chooseMenu(itemIndex)">{{item.item}}</span>
                 <span v-for="(subitem, subitemIndex) in item.subitems"
-                      :class="[((itemIndex*10 + subitemIndex) === choice) ? 'menu__sub-item--' + (itemIndex%4) + '--active' : 'menu__sub-item--' + itemIndex]"
+                      :class="[(hide[itemIndex]) ? 'menu__sub-item--hidden' : ((itemIndex*10 + subitemIndex) === choice) ? 'menu__sub-item--' + (itemIndex%4) + '--active' : 'menu__sub-item--' + itemIndex]"
                       @click="chooseMenu(itemIndex*10 + subitemIndex)">{{subitem}}</span>
             </template>
         </div>

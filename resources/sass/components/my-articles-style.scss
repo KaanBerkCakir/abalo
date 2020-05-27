@@ -12,7 +12,7 @@
         @extend .my-articles-item;
         @include style.card(colors.$green-pastel);
 
-        :hover {
+        &:hover {
             @extend .link;
         }
     }
@@ -21,7 +21,7 @@
         @extend .my-articles-item;
         @include style.card(colors.$yellow-pastel);
 
-        :hover {
+        &:hover {
             @extend .link;
         }
     }
@@ -30,7 +30,7 @@
         @extend .my-articles-item;
         @include style.card(colors.$red-pastel);
 
-        :hover {
+        &:hover {
             @extend .link;
         }
     }

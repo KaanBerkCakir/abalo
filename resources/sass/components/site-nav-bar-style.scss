@@ -27,10 +27,10 @@
         background: colors.$grey;
         color: colors.$green;
     }
-}
 
-.menu__item:hover {
-    @extend .link;
+    &:hover {
+        @extend .link;
+    }
 }
 
 @for $i from 0 through 3 {
@@ -39,19 +39,21 @@
             @extend .noselect;
             @include colors.colorize-pastel($i);
             padding: 8px 20px;
-        }
 
-        &--#{$i}:hover {
-            @extend .link;
-        }
+            &:hover {
+                @extend .link;
+            }
 
-        &--#{$i} {
             &--active {
                 @extend .noselect;
                 @include colors.colorize-pastel($i);
                 padding: 8px 20px;
                 color: colors.$green;
             }
+        }
+
+        &--hidden {
+            display: none;
         }
     }
 }
