@@ -21,8 +21,15 @@
                                 v-on:set-site="updateSite"></all-articles-component>
         <my-articles-component v-else-if="choice === 11" :signed-in="user"></my-articles-component>
         <category-component v-else-if="choice === 2" :colors='colors'></category-component>
+        <impressum-component v-else-if="choice === 404"></impressum-component>
     </div>
 </div>
 <script src="./js/app.js"></script>
 </body>
 </html>
+<script>
+    import ImpressumComponent from "../js/components/ImpressumComponent";
+    export default {
+        components: {ImpressumComponent}
+    }
+</script>

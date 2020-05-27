@@ -11,9 +11,9 @@
         </div>
         <div class="impressum">
             <span class="impressum__item--1">Kaan Berk Cakir</span>
-            <div class="impressum__item--2">
+            <div class="impressum__item--2" @click="chooseMenu(404)">
                 <span>Jonas Schell</span>
-                <span><span onclick="removeConsent()">&copy;</span> Copyright</span>
+                <span>&copy; Copyright</span>
             </div>
         </div>
     </div>
