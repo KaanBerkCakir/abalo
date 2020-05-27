@@ -9,9 +9,9 @@
                       @click="chooseMenu(itemIndex*10 + subitemIndex)">{{subitem}}</span>
             </template>
         </div>
-        <div class="impressum">
+        <div class="impressum" @click="chooseMenu(404)">
             <span class="impressum__item--1">Kaan Berk Cakir</span>
-            <div class="impressum__item--2" @click="chooseMenu(404)">
+            <div class="impressum__item--2">
                 <span>Jonas Schell</span>
                 <span>&copy; Copyright</span>
             </div>
@@ -88,6 +88,10 @@
                         this.choice = num;
                         this.$emit('router', num);
                         // open karriere
+                        break;
+                    case 404:
+                        this.choice = num;
+                        this.$emit('router', num);
                         break;
                 }
             },

@@ -7,7 +7,6 @@
                 <i v-else class="fas fa-angle-down"></i>
             </div>
             <div class="column" v-if="showCreate">
-                // TODO create article
 
 
 

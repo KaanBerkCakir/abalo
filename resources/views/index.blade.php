@@ -27,9 +27,3 @@
 <script src="./js/app.js"></script>
 </body>
 </html>
-<script>
-    import ImpressumComponent from "../js/components/ImpressumComponent";
-    export default {
-        components: {ImpressumComponent}
-    }
-</script>
