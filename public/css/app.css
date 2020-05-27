@@ -338,14 +338,6 @@ body {
   background: #cff0ee;
 }
 
-.shopping-card > span:last-child {
-  margin-right: 32px;
-}
-
-.shopping-card li {
-  margin-bottom: 10px;
-}
-
 .shopping-card__item--price {
   text-align: end;
 }
@@ -354,11 +346,24 @@ body {
   color: #bc2d2d;
 }
 
+.shopping-card span:last-child {
+  margin-right: 32px;
+}
+
+.shopping-card li {
+  margin-bottom: 10px;
+}
+
 .all-articles,
-.all-articles__table {
+.all-articles__table,
+.all-articles--null {
   margin-top: 20px;
   width: 80%;
   background: #f0f0f0;
+}
+
+.all-articles--null {
+  padding: 20px;
 }
 
 .all-articles__table {

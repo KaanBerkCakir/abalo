@@ -7,131 +7,134 @@
     background: colors.$black;
     padding: 10px 20px;
     border-radius: 10px;
-}
 
-.pagination-style {
-    color: #f0f0f0;
-    font-size: 25px;
-}
+    &-style {
+        color: #f0f0f0;
+        font-size: 25px;
+    }
 
-.pagination__select-number {
-    width: 15%
-}
+    &__select-number {
+        width: 15%
+    }
 
-.pagination__arrow {
-    @extend .icon-button, .pagination-style;
-}
+    &__arrow {
+        @extend .icon-button, .pagination-style;
+    }
 
-.pagination__arrow:disabled {
-    color: grey;
-}
+    &__arrow:disabled {
+        color: grey;
+    }
 
-.pagination__arrow:disabled:hover {
-    cursor: default;
+    &__arrow:disabled:hover {
+        cursor: default;
+    }
 
-}
+    &__number {
+        @extend .pagination-style;
+    }
 
-.pagination__number {
-    @extend .pagination-style;
-
-}
-
-.pagination__select-category {
-    @extend .row, .jc-end, .pagination-style;
-    width: 15%
+    &__select-category {
+        @extend .row, .jc-end, .pagination-style;
+        width: 15%
+    }
 }
 
 .shopping-card {
     @extend .al-s-stretch, .column, .al-s-stretch;
     padding: 20px;
     background: #cff0ee;
-}
 
-.shopping-card  > span:last-child{
-    margin-right: 32px;
-}
+    &__title {
+        @extend .al-s-center;
+    }
 
-.shopping-card li {
-    margin-bottom: 10px;
-}
+    &__item {
+        @extend .row;
+    }
 
-.shopping-card__title {
-    @extend .al-s-center;
-}
+    &__item--price {
+        @extend .al-s-stretch, .grow-1;
+        text-align: end;
+    }
 
-.shopping-card__item {
-    @extend .row;
-}
+    &__item--remove {
+        @extend .icon-button;
+        color: #bc2d2d;
+    }
 
-.shopping-card__item--price {
-    @extend .al-s-stretch, .grow-1;
-    text-align: end;
-}
+    &__item--total-cost {
+        @extend .al-s-end;
+    }
 
-.shopping-card__item--remove {
-    @extend .icon-button;
-    color: #bc2d2d;
-}
+    span:last-child {
+        margin-right: 32px;
+    }
 
-.shopping-card__item--total-cost {
-    @extend .al-s-end;
+    li {
+        margin-bottom: 10px;
+    }
 }
 
 .all-articles {
     margin-top: 20px;
     width: 80%;
     background: #f0f0f0;
-}
 
-.all-articles__table {
-    @extend .all-articles;
-    border-collapse: collapse;
-}
+    &--null {
+        @extend .all-articles;
+        padding: 20px;
+    }
 
-.all-articles__table th {
-    border: 5px solid white;
-    padding: 15px;
-    border-collapse: collapse;
-}
+    &__table {
+        @extend .all-articles;
+        border-collapse: collapse;
+    }
 
-.all-articles__table td {
-    border: 5px solid white;
-    padding: 15px;
-    border-collapse: collapse;
-}
+    &__table th {
+        border: 5px solid white;
+        padding: 15px;
+        border-collapse: collapse;
+    }
 
-.all-articles__table tr:hover:not(.all-articles__head) {
-    background: #393d3f;
-    color: #e6e6e8;
-}
+    &__table td {
+        border: 5px solid white;
+        padding: 15px;
+        border-collapse: collapse;
+    }
 
-.all-articles__head {
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 10px 20px;
-}
+    &__table tr:hover:not(.all-articles__head) {
+        background: #393d3f;
+        color: #e6e6e8;
+    }
 
-.all-articles__head > div:nth-child(2) {
-    border-top: #f0f0f0 5px solid;
-    padding-top: 20px;
-}
+    &__head {
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding: 10px 20px;
 
-.all-articles__head > th:nth-child(1) {
-    width: 10%;
-}
+        > div:nth-child(2) {
+            border-top: #f0f0f0 5px solid;
+            padding-top: 20px;
+        }
 
-.all-articles__head > th:nth-child(2) {
-    width: 10%;
-}
+        > th:nth-child(1) {
+            width: 10%;
+        }
 
-.all-articles__head > th:nth-child(3) {
-    width: 50%;
-}
+        > th:nth-child(2) {
+            width: 10%;
+        }
 
-.all-articles__head > th:nth-child(4) {
-    width: 20%;
-}
+        > th:nth-child(3) {
+            width: 50%;
+        }
 
-.all-articles__head > th:nth-child(5) {
-    width: 10%;
+        > th:nth-child(4) {
+            width: 20%;
+        }
+
+        > th:nth-child(5) {
+            width: 10%;
+        }
+    }
 }

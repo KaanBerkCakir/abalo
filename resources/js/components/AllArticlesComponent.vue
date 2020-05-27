@@ -47,7 +47,7 @@
             <span v-if="articlesOnCart.length > 0" class="shopping-card__item--total-cost">{{total()}}€</span>
         </div>
 
-        <span v-if="buyableArticles.length === 0" class="all-articles">Keine Artikel vorhanden.</span>
+        <span v-if="buyableArticles.length === 0" class="all-articles--null">Keine Artikel vorhanden.</span>
         <table v-if="buyableArticles.length > 0" class="all-articles__table">
             <tr class="all-articles__head">
                 <th>Artikel-Id</th>
@@ -64,7 +64,7 @@
                 <td>{{elem.ab_createdate}}</td>
                 <td>{{elem.ab_price}}</td>
                 <td>
-                    <button @click="addItem(elem.id)"><i class="fas fa-plus"></i></button>
+                    <button class="icon-button" @click="addItem(elem.id)"><i class="fas fa-plus"></i></button>
                 </td>
             </tr>
         </table>
