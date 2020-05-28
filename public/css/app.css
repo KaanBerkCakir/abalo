@@ -1,5 +1,6 @@
 .row,
 .category,
+.form__item,
 .my-articles-item__head,
 .my-articles-item__head--opened,
 .pagination,
@@ -18,6 +19,7 @@
 .category__card--3,
 .category__card--4,
 .category__card--body,
+.form,
 .my-articles-item,
 .my-articles-item--green,
 .my-articles-item--yellow,
@@ -94,7 +96,8 @@
   align-items: stretch;
 }
 
-.al-s-start {
+.al-s-start,
+.form__submit {
   align-self: flex-start;
 }
 
@@ -146,7 +149,8 @@
   /* Mouse pointer on hover */
 }
 
-.input-field {
+.input-field,
+.form__field {
   border: 1px solid #08b1a9;
   border-radius: 4px;
   margin-right: 20px;
@@ -479,6 +483,22 @@ body {
 
 .my-articles-item__head--opened {
   margin-bottom: 10px;
+}
+
+.form {
+  width: 300px;
+}
+
+.form__item {
+  margin-bottom: 10px;
+}
+
+.form__label {
+  width: 150px;
+}
+
+.form__field {
+  width: 150px;
 }
 
 .category__card--0 {

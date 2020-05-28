@@ -7,9 +7,7 @@
                 <i v-else class="fas fa-angle-down"></i>
             </div>
             <div class="column" v-if="showCreate">
-
-
-
+                <CreateArticleComponent :user="signedIn" v-on:update-list="afterArticleCreated"></CreateArticleComponent>
             </div>
         </div>
         <div class="my-articles-item--yellow">
@@ -116,6 +114,11 @@
                     this.loadMyArticles();
                 }
                 xhr.send();
+            },
+            afterArticleCreated: function () {
+                this.loadMyArticles();
+                this.showCreate = false;
+                this.showMy = true;
             }
         }
     }

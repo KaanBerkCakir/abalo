@@ -1,13 +1,24 @@
 require('./bootstrap');
-window.Vue = require('vue');
-Vue.component("SiteHeaderComponent", () => import("./components/SiteHeaderComponent.vue"));
-Vue.component("SiteNavBarComponent", () => import("./components/SiteNavBarComponent.vue"));
 
-Vue.component("HomeComponent", () => import("./components/HomeComponent.vue"));
-Vue.component("AllArticlesComponent", () => import("./components/AllArticlesComponent.vue"));
-Vue.component("MyArticlesComponent", () => import("./components/MyArticlesComponent.vue"));
-Vue.component("CategoryComponent", () => import("./components/CategoryComponent.vue"));
-Vue.component("ImpressumComponent",()=> import("./components/ImpressumComponent.vue"));
+import SiteHeaderComponent from "./components/SiteHeaderComponent";
+import SiteNavBarComponent from "./components/SiteNavBarComponent";
+import HomeComponent from "./components/HomeComponent";
+import AllArticlesComponent from "./components/AllArticlesComponent";
+import MyArticlesComponent from "./components/MyArticlesComponent";
+import CreateArticleComponent from "./components/CreateArticleComponent";
+import CategoryComponent from "./components/CategoryComponent";
+import ImpressumComponent from "./components/ImpressumComponent";
+
+window.Vue = require('vue');
+Vue.component("SiteHeaderComponent", SiteHeaderComponent);
+Vue.component("SiteNavBarComponent", SiteNavBarComponent);
+
+Vue.component("HomeComponent", HomeComponent);
+Vue.component("AllArticlesComponent", AllArticlesComponent);
+Vue.component("MyArticlesComponent", MyArticlesComponent);
+Vue.component("CreateArticleComponent", CreateArticleComponent);
+Vue.component("CategoryComponent", CategoryComponent);
+Vue.component("ImpressumComponent", ImpressumComponent);
 
 var allArticles = [];
 var cart;

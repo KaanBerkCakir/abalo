@@ -1,0 +1,27 @@
+@use '../general/colors';
+@use '../general/flex-style';
+@use '../general/action-style';
+@use '../general/style';
+
+.form {
+    @extend .column;
+    width: 300px;
+
+    &__item {
+        @extend .row;
+        margin-bottom: 10px;
+    }
+
+    &__label {
+        width: 150px;
+    }
+
+    &__field {
+        @extend .input-field;
+        width: 150px;
+    }
+
+    &__submit {
+        @extend .al-s-start;
+    }
+}
