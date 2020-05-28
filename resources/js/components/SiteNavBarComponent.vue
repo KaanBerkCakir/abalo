@@ -68,7 +68,11 @@
                             this.choice = num;
                             this.$emit('router', num);
                         } else {
-                            alert('Anmelden');
+                            this.$dlg.alert('Sie müssen sich zuvor anmelden!', {
+                                title: 'Fehler',
+                                messageType: 'error',
+                                language: 'en'
+                            });
                         }
                         break;
                     case 2:

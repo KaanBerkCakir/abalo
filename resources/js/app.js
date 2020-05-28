@@ -1,5 +1,7 @@
 require('./bootstrap');
 
+import Vue from 'vue';
+import Dialog from 'v-dialogs'
 import SiteHeaderComponent from "./components/SiteHeaderComponent";
 import SiteNavBarComponent from "./components/SiteNavBarComponent";
 import HomeComponent from "./components/HomeComponent";
@@ -9,7 +11,11 @@ import CreateArticleComponent from "./components/CreateArticleComponent";
 import CategoryComponent from "./components/CategoryComponent";
 import ImpressumComponent from "./components/ImpressumComponent";
 
-window.Vue = require('vue');
+
+Vue.use(Dialog, {
+    // global config options...
+});
+
 Vue.component("SiteHeaderComponent", SiteHeaderComponent);
 Vue.component("SiteNavBarComponent", SiteNavBarComponent);
 
@@ -119,7 +125,11 @@ new Vue({
                 };
                 xhr.send();
             } else {
-                alert('Sie müssen sich zuerst anmelden');
+                this.$dlg.alert('Sie müssen sich zuvor anmelden!', {
+                    title: false,
+                    messageType: 'error',
+                    language: 'en'
+                });
             }
         },
         removeFromCart: function (id) {
