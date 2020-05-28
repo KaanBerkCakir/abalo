@@ -182,7 +182,8 @@
 .menu__sub-item--0:hover,
 .menu__sub-item--1:hover,
 .menu__sub-item--2:hover,
-.menu__sub-item--3:hover {
+.menu__sub-item--3:hover,
+.impressum__button:hover {
   cursor: pointer;
   color: #08b1a9;
 }

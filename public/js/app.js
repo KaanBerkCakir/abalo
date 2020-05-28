@@ -21022,38 +21022,34 @@ var render = function() {
       2
     ),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "impressum",
-        on: {
-          click: function($event) {
-            return _vm.chooseMenu(404)
-          }
-        }
-      },
-      [
-        _c("span", { staticClass: "impressum__item--1" }, [
-          _vm._v("Kaan Berk Cakir")
-        ]),
+    _c("div", { staticClass: "impressum" }, [
+      _c("span", { staticClass: "impressum__item--1" }, [
+        _vm._v("Kaan Berk Cakir")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "impressum__item--2" }, [
+        _c("span", [_vm._v("Jonas Schell")]),
         _vm._v(" "),
-        _vm._m(0)
-      ]
-    )
+        _c("span", [
+          _c(
+            "span",
+            {
+              staticClass: "impressum__button",
+              on: {
+                click: function($event) {
+                  return _vm.chooseMenu(404)
+                }
+              }
+            },
+            [_vm._v("©")]
+          ),
+          _vm._v(" Copyright")
+        ])
+      ])
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "impressum__item--2" }, [
-      _c("span", [_vm._v("Jonas Schell")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("© Copyright")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -33395,8 +33391,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
         this.$dlg.alert('Sie müssen sich zuvor anmelden!', {
           title: false,
           messageType: 'error',
-          language: 'en',
-          shaking: false
+          language: 'en'
         });
       }
     },

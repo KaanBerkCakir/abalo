@@ -9,11 +9,11 @@
                       @click="chooseMenu(itemIndex*10 + subitemIndex)">{{subitem}}</span>
             </template>
         </div>
-        <div class="impressum" @click="chooseMenu(404)">
+        <div class="impressum">
             <span class="impressum__item--1">Kaan Berk Cakir</span>
             <div class="impressum__item--2">
                 <span>Jonas Schell</span>
-                <span>&copy; Copyright</span>
+                <span><span class="impressum__button" @click="chooseMenu(404)">&copy;</span> Copyright</span>
             </div>
         </div>
     </div>
