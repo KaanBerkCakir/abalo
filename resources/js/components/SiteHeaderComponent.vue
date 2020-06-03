@@ -35,9 +35,18 @@
                     xhr.open('GET', 'http://localhost:8000/authentification/login');
                     xhr.withCredentials = true;
                     xhr.onload = () => {
-                        this.$emit('sign-in', JSON.parse(xhr.response).user);
+                        const user = JSON.parse(xhr.response).user;
+                        this.$emit('sign-in', user);
+                        this.$dlg.toast('Du bist als ' + user + ' angemeldet.',{
+                            messageType: 'success',
+                            closeTime: 3
+                        });
                     }
-                    xhr.onerror = function () {
+                    xhr.onerror = () => {
+                        this.$dlg.toast(xhr.responseText,{
+                            messageType: 'error',
+                            closeTime: 3
+                        });
                     };
                     xhr.send();
                 } else {

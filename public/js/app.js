@@ -2095,7 +2095,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.categories = JSON.parse(xhr.response).categories;
       };
 
-      xhr.onerror = function () {};
+      xhr.onerror = function () {
+        _this.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
+      };
 
       xhr.send();
     }
@@ -2159,12 +2164,23 @@ __webpack_require__.r(__webpack_exports__);
       xhr.open('POST', 'http://localhost:8000/api/articles');
 
       xhr.onload = function () {
-        console.log(xhr.response);
+        _this.$emit('update-list');
+
+        _this.$dlg.toast('Artikel " ' + _this.title + '" wurde hinzugefügt.', {
+          messageType: 'success',
+          closeTime: 3
+        });
+
         _this.title = '';
         _this.price = '';
         _this.desc = '';
+      };
 
-        _this.$emit('update-list');
+      xhr.onerror = function () {
+        _this.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
       };
 
       xhr.send(body);
@@ -2342,6 +2358,18 @@ __webpack_require__.r(__webpack_exports__);
 
       xhr.onload = function () {
         _this2.loadMyArticles();
+
+        _this2.$dlg.toast('Artikel wurde zum Löschen vorgemerkt.', {
+          messageType: 'success',
+          closeTime: 3
+        });
+      };
+
+      xhr.onerror = function () {
+        _this2.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
       };
 
       xhr.send();
@@ -2355,6 +2383,18 @@ __webpack_require__.r(__webpack_exports__);
 
       xhr.onload = function () {
         _this3.loadMyArticles();
+
+        _this3.$dlg.toast('Artikel wurde wiederhergestellt.', {
+          messageType: 'success',
+          closeTime: 3
+        });
+      };
+
+      xhr.onerror = function () {
+        _this3.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
       };
 
       xhr.send();
@@ -2367,6 +2407,18 @@ __webpack_require__.r(__webpack_exports__);
 
       xhr.onload = function () {
         _this4.loadMyArticles();
+
+        _this4.$dlg.toast('Artikel wurde entgültig gelöscht.', {
+          messageType: 'success',
+          closeTime: 3
+        });
+      };
+
+      xhr.onerror = function () {
+        _this4.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
       };
 
       xhr.send();
@@ -2429,10 +2481,22 @@ __webpack_require__.r(__webpack_exports__);
         xhr.withCredentials = true;
 
         xhr.onload = function () {
-          _this.$emit('sign-in', JSON.parse(xhr.response).user);
+          var user = JSON.parse(xhr.response).user;
+
+          _this.$emit('sign-in', user);
+
+          _this.$dlg.toast('Du bist als ' + user + ' angemeldet.', {
+            messageType: 'success',
+            closeTime: 3
+          });
         };
 
-        xhr.onerror = function () {};
+        xhr.onerror = function () {
+          _this.$dlg.toast(xhr.responseText, {
+            messageType: 'error',
+            closeTime: 3
+          });
+        };
 
         xhr.send();
       } else {
@@ -33257,7 +33321,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_dialogs__WEBPACK_IMPORTED_MODULE_1___default.a, {// global config options...
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_dialogs__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  language: 'en'
 });
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("SiteHeaderComponent", _components_SiteHeaderComponent__WEBPACK_IMPORTED_MODULE_2__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component("SiteNavBarComponent", _components_SiteNavBarComponent__WEBPACK_IMPORTED_MODULE_3__["default"]);
@@ -33321,7 +33386,12 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
           }
         };
 
-        xhr.onerror = function () {};
+        xhr.onerror = function () {
+          _this.$dlg.toast(xhr.responseText, {
+            messageType: 'error',
+            closeTime: 3
+          });
+        };
 
         xhr.send();
       } else {
@@ -33382,9 +33452,19 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
           _this3.cart = JSON.parse(xhr.response).articles;
 
           _this3.updateArticleList();
+
+          _this3.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.', {
+            messageType: 'success',
+            closeTime: 3
+          });
         };
 
-        xhr.onerror = function () {};
+        xhr.onerror = function () {
+          _this3.$dlg.toast(xhr.responseText, {
+            messageType: 'error',
+            closeTime: 3
+          });
+        };
 
         xhr.send();
       } else {
@@ -33406,9 +33486,19 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
         _this4.cart = JSON.parse(xhr.response).articles;
 
         _this4.updateArticleList();
+
+        _this4.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.', {
+          messageType: 'success',
+          closeTime: 3
+        });
       };
 
-      xhr.onerror = function () {};
+      xhr.onerror = function () {
+        _this4.$dlg.toast(xhr.responseText, {
+          messageType: 'error',
+          closeTime: 3
+        });
+      };
 
       xhr.send();
     },

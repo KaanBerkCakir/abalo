@@ -42,12 +42,21 @@
                 const xhr = new XMLHttpRequest();
                 xhr.open('POST', 'http://localhost:8000/api/articles');
                 xhr.onload = () => {
-                    console.log(xhr.response);
+                    this.$emit('update-list');
+                    this.$dlg.toast('Artikel " ' + this.title + '" wurde hinzugefügt.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
                     this.title = '';
                     this.price = '';
                     this.desc = '';
-                    this.$emit('update-list');
                 }
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
+                };
                 xhr.send(body);
             }
         }

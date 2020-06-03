@@ -13,7 +13,7 @@ import ImpressumComponent from "./components/ImpressumComponent";
 
 
 Vue.use(Dialog, {
-    // global config options...
+    language: 'en'
 });
 
 Vue.component("SiteHeaderComponent", SiteHeaderComponent);
@@ -72,8 +72,11 @@ new Vue({
                         xhr.send();
                     }
                 }
-                xhr.onerror = function () {
-
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
                 };
                 xhr.send();
             } else {
@@ -120,8 +123,16 @@ new Vue({
                 xhr.onload = () => {
                     this.cart = JSON.parse(xhr.response).articles;
                     this.updateArticleList();
+                    this.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
                 }
-                xhr.onerror = function () {
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
                 };
                 xhr.send();
             } else {
@@ -139,8 +150,16 @@ new Vue({
             xhr.onload = () => {
                 this.cart = JSON.parse(xhr.response).articles;
                 this.updateArticleList();
+                this.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.',{
+                    messageType: 'success',
+                    closeTime: 3
+                });
             }
-            xhr.onerror = function () {
+            xhr.onerror = () => {
+                this.$dlg.toast(xhr.responseText,{
+                    messageType: 'error',
+                    closeTime: 3
+                });
             };
             xhr.send();
         },

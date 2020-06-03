@@ -95,7 +95,17 @@
                 xhr.open('DELETE', 'http://localhost:8000/api/articles/' + id);
                 xhr.onload = () => {
                     this.loadMyArticles();
+                    this.$dlg.toast('Artikel wurde zum Löschen vorgemerkt.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
                 }
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
+                };
                 xhr.send();
             },
             restore: function (id) {
@@ -104,7 +114,17 @@
                 xhr.open('GET', 'http://localhost:8000/api/articles/' + id + '/restore');
                 xhr.onload = () => {
                     this.loadMyArticles();
+                    this.$dlg.toast('Artikel wurde wiederhergestellt.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
                 }
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
+                };
                 xhr.send();
             },
             remove: function (id) {
@@ -112,7 +132,17 @@
                 xhr.open('DELETE', 'http://localhost:8000/api/articles/' + id + '/hard');
                 xhr.onload = () => {
                     this.loadMyArticles();
+                    this.$dlg.toast('Artikel wurde entgültig gelöscht.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
                 }
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
+                };
                 xhr.send();
             },
             afterArticleCreated: function () {

@@ -28,7 +28,11 @@
                 xhr.onload = () => {
                     this.categories = JSON.parse(xhr.response).categories;
                 }
-                xhr.onerror = function () {
+                xhr.onerror = () => {
+                    this.$dlg.toast(xhr.responseText,{
+                        messageType: 'error',
+                        closeTime: 3
+                    });
                 };
                 xhr.send();
             }
