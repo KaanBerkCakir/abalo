@@ -43,6 +43,24 @@ new Vue({
         site: 1,
         amount: 0
     },
+    created: function () {
+        let socket = new WebSocket('ws://localhost:1234/demo');
+        socket.onopen = (event) => {
+            console.log('Connection established');
+        };
+        socket.onmessage = (msgEvent) => {
+            let data = JSON.parse(msgEvent.data);
+            this.$dlg.alert(data.data,
+                () => {
+                    this.$dlg.toast('Wartung in ... Tagen', {
+                        messageType: 'warning'
+                    });
+                }, {
+                    messageType: 'warning'
+                }
+            );
+        };
+    },
     methods: {
         choose: function (link) {
             this.choice = link;
@@ -73,7 +91,7 @@ new Vue({
                     }
                 }
                 xhr.onerror = () => {
-                    this.$dlg.toast(xhr.responseText,{
+                    this.$dlg.toast(xhr.responseText, {
                         messageType: 'error',
                         closeTime: 3
                     });
@@ -123,13 +141,13 @@ new Vue({
                 xhr.onload = () => {
                     this.cart = JSON.parse(xhr.response).articles;
                     this.updateArticleList();
-                    this.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.',{
+                    this.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.', {
                         messageType: 'success',
                         closeTime: 3
                     });
                 }
                 xhr.onerror = () => {
-                    this.$dlg.toast(xhr.responseText,{
+                    this.$dlg.toast(xhr.responseText, {
                         messageType: 'error',
                         closeTime: 3
                     });
@@ -150,13 +168,13 @@ new Vue({
             xhr.onload = () => {
                 this.cart = JSON.parse(xhr.response).articles;
                 this.updateArticleList();
-                this.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.',{
+                this.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.', {
                     messageType: 'success',
                     closeTime: 3
                 });
             }
             xhr.onerror = () => {
-                this.$dlg.toast(xhr.responseText,{
+                this.$dlg.toast(xhr.responseText, {
                     messageType: 'error',
                     closeTime: 3
                 });

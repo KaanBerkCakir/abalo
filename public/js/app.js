@@ -33348,6 +33348,27 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     site: 1,
     amount: 0
   },
+  created: function created() {
+    var _this = this;
+
+    var socket = new WebSocket('ws://localhost:1234/demo');
+
+    socket.onopen = function (event) {
+      console.log('Connection established');
+    };
+
+    socket.onmessage = function (msgEvent) {
+      var data = JSON.parse(msgEvent.data);
+
+      _this.$dlg.alert(data.data, function () {
+        _this.$dlg.toast('Wartung in ... Tagen', {
+          messageType: 'warning'
+        });
+      }, {
+        messageType: 'warning'
+      });
+    };
+  },
   methods: {
     choose: function choose(link) {
       this.choice = link;
@@ -33361,7 +33382,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       }
     },
     updateUser: function updateUser(user) {
-      var _this = this;
+      var _this2 = this;
 
       this.site = 1;
 
@@ -33371,15 +33392,15 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
         xhr.onload = function () {
           localStorage.setItem('cart', JSON.stringify(JSON.parse(xhr.response).cart));
-          _this.user = user;
+          _this2.user = user;
 
-          if (_this.choice === 10) {
+          if (_this2.choice === 10) {
             xhr.open('GET', 'http://localhost:8000/api/shoppingcarts/' + JSON.parse(xhr.response).cart.id + '/articles');
 
             xhr.onload = function () {
-              _this.cart = JSON.parse(xhr.response).articles;
+              _this2.cart = JSON.parse(xhr.response).articles;
 
-              _this.updateArticleList();
+              _this2.updateArticleList();
             };
 
             xhr.send();
@@ -33387,7 +33408,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
         };
 
         xhr.onerror = function () {
-          _this.$dlg.toast(xhr.responseText, {
+          _this2.$dlg.toast(xhr.responseText, {
             messageType: 'error',
             closeTime: 3
           });
@@ -33406,7 +33427,7 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       this.fetchArticles();
     },
     fetchArticles: function fetchArticles() {
-      var _this2 = this;
+      var _this3 = this;
 
       var xhr = new XMLHttpRequest();
       var offset = this.site * this.limit - this.limit;
@@ -33414,19 +33435,19 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 
       xhr.onload = function () {
         allArticles = JSON.parse(xhr.response).articles;
-        _this2.amount = JSON.parse(xhr.response).amount;
+        _this3.amount = JSON.parse(xhr.response).amount;
 
-        if (!_this2.user) {
-          _this2.articles = allArticles;
+        if (!_this3.user) {
+          _this3.articles = allArticles;
         } else {
           var _cart = JSON.parse(localStorage.getItem('cart'));
 
           xhr.open('GET', 'http://localhost:8000/api/shoppingcarts/' + _cart.id + '/articles');
 
           xhr.onload = function () {
-            _this2.cart = JSON.parse(xhr.response).articles;
+            _this3.cart = JSON.parse(xhr.response).articles;
 
-            _this2.updateArticleList();
+            _this3.updateArticleList();
           };
 
           xhr.send();
@@ -33434,14 +33455,14 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       };
 
       xhr.onerror = function () {
-        _this2.cart = [];
-        _this2.articles = [];
+        _this3.cart = [];
+        _this3.articles = [];
       };
 
       xhr.send();
     },
     addToCart: function addToCart(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.user) {
         cart = JSON.parse(localStorage.getItem('cart'));
@@ -33449,18 +33470,18 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
         xhr.open('POST', 'http://localhost:8000/api/shoppingcarts/' + cart.id + '/articles/' + id);
 
         xhr.onload = function () {
-          _this3.cart = JSON.parse(xhr.response).articles;
+          _this4.cart = JSON.parse(xhr.response).articles;
 
-          _this3.updateArticleList();
+          _this4.updateArticleList();
 
-          _this3.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.', {
+          _this4.$dlg.toast('Artikel wurde dem Warenkorb hinzugefügt.', {
             messageType: 'success',
             closeTime: 3
           });
         };
 
         xhr.onerror = function () {
-          _this3.$dlg.toast(xhr.responseText, {
+          _this4.$dlg.toast(xhr.responseText, {
             messageType: 'error',
             closeTime: 3
           });
@@ -33476,25 +33497,25 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       }
     },
     removeFromCart: function removeFromCart(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       cart = JSON.parse(localStorage.getItem('cart'));
       var xhr = new XMLHttpRequest();
       xhr.open('DELETE', 'http://localhost:8000/api/shoppingcarts/' + cart.id + '/articles/' + id);
 
       xhr.onload = function () {
-        _this4.cart = JSON.parse(xhr.response).articles;
+        _this5.cart = JSON.parse(xhr.response).articles;
 
-        _this4.updateArticleList();
+        _this5.updateArticleList();
 
-        _this4.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.', {
+        _this5.$dlg.toast('Artikel wurde aus dem Warenkorb entfernt.', {
           messageType: 'success',
           closeTime: 3
         });
       };
 
       xhr.onerror = function () {
-        _this4.$dlg.toast(xhr.responseText, {
+        _this5.$dlg.toast(xhr.responseText, {
           messageType: 'error',
           closeTime: 3
         });
@@ -33503,12 +33524,12 @@ new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
       xhr.send();
     },
     updateArticleList: function updateArticleList() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.articles = [];
       allArticles.forEach(function (elem) {
-        if (!cartContains(_this5.cart, elem.id)) {
-          _this5.articles.push(elem);
+        if (!cartContains(_this6.cart, elem.id)) {
+          _this6.articles.push(elem);
         }
       });
     },

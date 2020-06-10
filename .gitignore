@@ -9,7 +9,7 @@ composer.lock
 package.json
 package-lock.json
 phpunit.xml
-server.php
+/server.php
 webpack.mix.js
 .editorconfig
 .env
