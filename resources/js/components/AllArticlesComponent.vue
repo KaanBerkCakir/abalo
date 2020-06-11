@@ -57,7 +57,7 @@
                 <th>Preis</th>
                 <th>Wk</th>
             </tr>
-            <tr v-for="(elem,index) in buyableArticles">
+            <tr v-for="(elem,index) in buyableArticles" :class="{sale: (saleStyle === elem.id)}">
                 <td>{{elem.id}}</td>
                 <td>{{elem.ab_name}}</td>
                 <td>{{elem.ab_description}}</td>
@@ -84,7 +84,9 @@
                 categories: [],
                 site: 1,
                 backwardsAllowed: false,
-                forwardsAllowed: true
+                forwardsAllowed: true,
+                saleStyle: 0,
+                saleSocket: null
             }
         },
         created: function () {
@@ -97,8 +99,31 @@
             };
             xhr.send();
 
+            this.saleSocket = new WebSocket('ws://localhost:1234/sale');
+            this.initSaleSocket();
+        },
+        beforeDestroy: function () {
+            this.saleSocket.close();
         },
         methods: {
+            initSaleSocket: function () {
+                this.saleSocket.onopen = (event) => {
+                    console.log('Connection to sale socket established');
+                };
+                this.saleSocket.onmessage = (msgEvent) => {
+                    let data = JSON.parse(JSON.parse(msgEvent.data).data);
+                    this.$dlg.alert('Der Artikel ' + data.name + ' wird nun günstiger angeboten! Greifen Sie schnell zu.', {
+                        messageType: 'info'
+                    });
+                    this.saleStyle = parseInt(data.id);
+                };
+                this.saleSocket.onclose = (closeEvent) => {
+                    console.log(
+                        'Connection closed' +
+                        ': code=', closeEvent.code,
+                        '; reason=', closeEvent.reason);
+                };
+            },
             addItem: function (id) {
                 this.$emit('add', id);
             },

@@ -2,6 +2,8 @@ require('./bootstrap');
 
 import Vue from 'vue';
 import Dialog from 'v-dialogs'
+import Axios from 'axios';
+import VueAxios from 'vue-axios'
 import SiteHeaderComponent from "./components/SiteHeaderComponent";
 import SiteNavBarComponent from "./components/SiteNavBarComponent";
 import HomeComponent from "./components/HomeComponent";
@@ -15,6 +17,7 @@ import ImpressumComponent from "./components/ImpressumComponent";
 Vue.use(Dialog, {
     language: 'en'
 });
+Vue.use(VueAxios, Axios);
 
 Vue.component("SiteHeaderComponent", SiteHeaderComponent);
 Vue.component("SiteNavBarComponent", SiteNavBarComponent);
@@ -41,27 +44,40 @@ new Vue({
         limit: 5,
         category: 'all',
         site: 1,
-        amount: 0
+        amount: 0,
+        maintenanceSocket: null,
     },
     created: function () {
-        let socket = new WebSocket('ws://localhost:1234/demo');
-        socket.onopen = (event) => {
-            console.log('Connection established');
-        };
-        socket.onmessage = (msgEvent) => {
-            let data = JSON.parse(msgEvent.data);
-            this.$dlg.alert(data.data,
-                () => {
-                    this.$dlg.toast('Wartung in ... Tagen', {
-                        messageType: 'warning'
-                    });
-                }, {
-                    messageType: 'warning'
-                }
-            );
-        };
+        this.maintenanceSocket = new WebSocket('ws://localhost:1234/maintenance');
+        this.initMaintenanceSocket();
+    },
+    beforeDestroy: function () {
+        this.maintenanceSocket.close();
     },
     methods: {
+        initMaintenanceSocket: function () {
+            this.maintenanceSocket.onopen = (event) => {
+                console.log('Connection to maintenance socket established');
+            };
+            this.maintenanceSocket.onmessage = (msgEvent) => {
+                let data = JSON.parse(msgEvent.data);
+                this.$dlg.alert(data.data,
+                    () => {
+                        this.$dlg.toast('Wartung in ... Tagen', {
+                            messageType: 'warning'
+                        });
+                    }, {
+                        messageType: 'warning'
+                    }
+                );
+            };
+            this.maintenanceSocket.onclose = (closeEvent) => {
+                console.log(
+                    'Connection closed' +
+                    ': code=', closeEvent.code,
+                    '; reason=', closeEvent.reason);
+            };
+        },
         choose: function (link) {
             this.choice = link;
             if (link === 10) {

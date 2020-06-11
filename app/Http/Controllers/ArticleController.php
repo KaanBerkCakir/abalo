@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ABUser;
 use Illuminate\Http\Request;
+require __DIR__ . '/../../../vendor/bloatless/php-websocket/src/Client.php';
 
 class ArticleController extends Controller
 {
@@ -71,6 +72,18 @@ class ArticleController extends Controller
 
     function articleForm() {
         return view('article_form');
+    }
+
+    function reduceArticle($id) {
+        $name = \App\ABArticle::find($id, ['ab_name']);
+        $client = new \Bloatless\WebSocket\Client;
+        $client->connect('127.0.0.1', 1234, '/sale');
+        $client->sendData(
+            json_encode([
+                    'action' => 'echo',
+                    'data' => json_encode(['id' => $id, 'name' => $name->ab_name])
+            ])
+        );
     }
 
     function deleteArticle($id) {

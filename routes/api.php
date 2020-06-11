@@ -28,6 +28,7 @@ Route::prefix('articles')->group(function () {
     Route::get('/user/{username}', 'ArticleController@getUserArticles');
     Route::get('/user/{username}/trashed', 'ArticleController@getTrashedArticles');
     Route::get('{id}/restore', 'ArticleController@restoreArticle');
+    Route::get('{id}/reduce', 'ArticleController@reduceArticle');
     Route::post('', 'ArticleController@createArticle');
     Route::delete('{id}', 'ArticleController@deleteArticle');
     Route::delete('{id}/hard', 'ArticleController@removeArticle');

@@ -22,6 +22,9 @@
                         <i class="fas fa-trash"></i>
                     </button>
                     <span style="margin-left: 10px">{{elem.ab_name}}</span>
+                    <button class="icon-button" @click="reduce(elem.id)">
+                        <i class="fas fa-tag"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -149,6 +152,15 @@
                 this.loadMyArticles();
                 this.showCreate = false;
                 this.showMy = true;
+            },
+            reduce: function (id) {
+                this.axios.get('http://localhost:8000/api/articles/' + id + '/reduce')
+                .then(response => {
+                    this.$dlg.toast('Artikel wurde reduziert.',{
+                        messageType: 'success',
+                        closeTime: 3
+                    });
+                });
             }
         }
     }

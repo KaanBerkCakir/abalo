@@ -406,13 +406,13 @@ body {
 }
 
 .all-articles__table th {
-  border: 5px solid white;
+  border: 5px solid #ffffff;
   padding: 15px;
   border-collapse: collapse;
 }
 
 .all-articles__table td {
-  border: 5px solid white;
+  border: 5px solid #ffffff;
   padding: 15px;
   border-collapse: collapse;
 }
@@ -420,6 +420,11 @@ body {
 .all-articles__table tr:hover:not(.all-articles__head) {
   background: #393d3f;
   color: #e6e6e8;
+}
+
+.all-articles__table tr.sale {
+  background: #ecf0cf;
+  color: #393d3f;
 }
 
 .all-articles__head {

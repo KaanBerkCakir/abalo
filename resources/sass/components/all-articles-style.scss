@@ -10,7 +10,7 @@
     border-radius: 10px;
 
     &-style {
-        color: #f0f0f0;
+        color: colors.$grey;
         font-size: 25px;
     }
 
@@ -43,7 +43,7 @@
 .shopping-card {
     @extend .al-s-stretch, .column, .al-s-stretch;
     padding: 20px;
-    background: #cff0ee;
+    background: colors.$blue-pastel;
 
     &__title {
         @extend .al-s-center;
@@ -79,7 +79,7 @@
 .all-articles {
     margin-top: 20px;
     width: 80%;
-    background: #f0f0f0;
+    background: colors.$grey;
 
     &--null {
         @extend .all-articles;
@@ -92,20 +92,25 @@
     }
 
     &__table th {
-        border: 5px solid white;
+        border: 5px solid colors.$white;
         padding: 15px;
         border-collapse: collapse;
     }
 
     &__table td {
-        border: 5px solid white;
+        border: 5px solid colors.$white;
         padding: 15px;
         border-collapse: collapse;
     }
 
     &__table tr:hover:not(.all-articles__head) {
-        background: #393d3f;
+        background: colors.$black;
         color: #e6e6e8;
+    }
+
+    &__table tr.sale {
+        background: colors.$yellow-pastel;
+        color: colors.$black;
     }
 
     &__head {
@@ -114,7 +119,7 @@
         padding: 10px 20px;
 
         > div:nth-child(2) {
-            border-top: #f0f0f0 5px solid;
+            border-top: colors.$grey 5px solid;
             padding-top: 20px;
         }
 
